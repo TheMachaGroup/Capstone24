@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="help.css">
+    <title>Contact Page</title>
+</head>
+<body>
+    <div id="contact-container">
+        <div>
+            <div id="contact-container-child1">
+            <div id="contact-container-child1-title">We are happy <br> to help!</div>
+            <p style="font-family:Inter_REG;;">Please fill out the form on the right side.</p>
+        </div>
+
+        <form id="contact-container-child2">
+            <div id="subject-input">
+                <label>Subject</label>
+                <input required class="input-text">    
+            </div>
+            
+            <div id="file-input">
+                <label>File Attachment</label>
+                <input type="file">
+            </div>
+            
+            <div id="contact-input">
+                <label>Help Category</label>
+                <select id="contact-option" required>
+                    <option value="">Troubleshoot</option>
+                    <option value="">Database Problem</option>
+                    <option value="">Report Issues</option>
+                    <option value="">General Questions</option>
+                </select>
+            </div>
+           
+            <div id="mess-input">
+                <label>Problem Description</label>
+                <textarea id="user-textbox" name="textbox" rows="10" cols="55" required></textarea>
+            </div>
+            
+            <button id="contact-submitbtn">Send Message</button>
+        </form>
+        </div>
+        
+    </div>
+</body>
+</html>
