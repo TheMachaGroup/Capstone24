@@ -1,0 +1,32 @@
+.title {
+    padding: 1em;
+    font-family: OpenSans_Bold;
+    background-color: white;
+    box-shadow: 2px 1px 5px 0px rgba(0,0,139,0.1);
+}
+
+#tabletest {
+    margin-top: 5em;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    max-width: 200ch;
+    background-color: white;
+    border: 1px solid hsl(212, 45%, 89%);
+    border-radius: 7px;
+    border-left: #00008B 7px solid;
+    padding: 2em;
+    box-shadow: 2px 1px 5px 0px rgba(0,0,139,0.1);
+    font-family: Inter_REG;
+}
+select {
+    border-radius: 5px;
+    font-family: Inter_REG;
+}
+th {
+    font-family: Inter_REG;
+    font-size: 1em;
+}
+td:nth-child(2) {
+    width: 25ch;
+}

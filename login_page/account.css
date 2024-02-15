@@ -1,0 +1,85 @@
+@font-face {
+    font-family: OpenSans_Bold;
+    src: url(../fonts/OpenSans/OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: Inter_Reg;
+    src: url(../fonts/Inter/Inter-Regular.ttf);
+}
+
+body {
+    background-color: hsl(212, 45%, 89%) !important;
+    font-family: Inter_Reg;
+}
+
+#container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#container2 {
+    padding: 5rem;
+    position: relative;
+    border: 1px solid hsl(212, 45%, 89%);
+    box-shadow: 8px 6px 14px 0px rgba(176,176,176,0.10);
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 10px;
+}
+
+#title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #00008B;
+    font-size: 4rem;
+    font-family: OpenSans_Bold !important;
+}
+
+.box_label {
+    display: block;
+    font-size: 0.7em;
+    margin-bottom: 7px;
+    margin-left: 5px;
+    border: 0;
+}
+
+.input_box {
+    border: 1px solid #00008B;
+    border-radius: 5px;
+    width: 65ch;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    box-shadow: 8px 6px 14px 0px rgba(176,176,176,0.10);
+}
+
+.btn {
+    display: inline-block;
+    background-color: #00008B;
+    border: 1px solid rgb(0, 0, 0, 0.10);
+    color: white;
+    width: 20ch;
+    padding: 0.7em;
+    box-shadow: 10px 6px 22px 0px rgba(0,0,139,0.15);
+    border-radius: 10px 5px 10px 5px;
+}
+
+#prev {
+    display: none;
+}
+
+#cnt {
+    margin-left: 15em;
+}
+
+.label {
+    display: block;
+}
+
+
+#step-2 {
+    display: none;
+}

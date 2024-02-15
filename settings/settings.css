@@ -1,0 +1,106 @@
+@font-face {
+    font-family: OpenSans_Bold;
+    src: url(../fonts/OpenSans/OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: Inter_Reg;
+    src: url(../fonts/Inter/Inter-Regular.ttf);
+}
+
+h1 {
+    margin-bottom: 1em;
+    padding: 1em;
+    font-family: OpenSans_Bold;
+    background-color: white;
+    box-shadow: 2px 1px 5px 0px rgba(0,0,139,0.1);
+}
+body {
+    background-color: #F4F4F5;
+}
+
+#main-grid {
+    display: grid;
+    grid-template-columns: 0.5fr 3.5fr;
+}
+
+.container {
+    background-color: white;
+    margin: 0 1em 0 1em;
+    font-family: Inter_Reg;
+    border-radius: 3px;
+    box-shadow: 2px 1px 5px 0px rgba(0,0,139,0.1);
+}
+
+#profile-nav {
+    height: fit-content;
+}
+#profile-nav li:hover {
+    background-color:rgba(244, 244, 245, 0.5)
+}
+.title {
+    font-size: 1.5em;
+    margin: 1em;
+}
+
+.email-para {
+    margin-left: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.profile-option {
+    padding: 1em;
+    width: 30vw;
+}
+
+.profile-option.active {
+    border-left: 3px solid #00008B;
+}
+
+#edit-profile {
+    display: block
+}
+
+.item {
+    display: inline-block;
+}
+
+.box_label {
+    display: block;
+    margin-left: 1em;
+}
+
+
+.input_box {
+    border: 1px solid #00008B;
+    border-radius: 5px;
+    width: 50ch;
+    padding: 10px;
+    margin: 0 3em 2em 1em;
+    box-shadow: 8px 6px 14px 0px rgba(176,176,176,0.10);
+}
+
+.save-btn {
+    display: block;
+    background-color: #00008B;
+    border: 1px solid rgb(0, 0, 0, 0.10);
+    color: white;
+    width: 25ch;
+    padding: 0.7em;
+    box-shadow: 10px 6px 22px 0px rgba(0,0,139,0.15);
+    border-radius: 10px 5px 10px 5px;
+    margin: 0 0 1em 1em;
+}
+#account-settings {
+    margin-left: 1em;
+    display: none;
+}
+
+#security {
+     display: none;
+}
+
+
+#account-settings > div {
+    margin: 0 1em 2em 0;
+} 
