@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="login_page/login.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login to HAA</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="login_page/login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to HAA</title>
 </head>
 <body>
-	<div id="login-container">
-		<div id="login">
-			<img id="logo" src="img/logo.png" alt="Company Logo">
-			<h1 id="title">Protection Housing Assessment</h1>
-			<?php
-    // Check for an error message in the URL
-    if(isset($_GET['error'])) {
-        echo '<p style="color: red;">' . $_GET['error'] . '</p>';
-    }
-    ?>
-			<form action="login.php" method="post">
-       				 <label for="Username">Username:</label>
-       				 <input type="text" id="Username" name="Username" required><br>
-        				<label for="Password">Password:</label>
-        				<input type="Password" id="Password" name="Password" required><br>
-       					 <input type="submit" value="Login">
-			</form>
-			<a href="#" id="forgot">Forgot Password?</a>
-			<div id="other-action">
-				
-			<button type="submit" id="signin" class="btn"><a href="form.html">Sign In</a></button>
-			<div id="or">or</div>
-			<button id="signup" class="btn"><a href="login_page/create_account.html">Create Account</a></button>
-			</div>
-			
-		</div>
-		
-	</div>
+    <div id="login-container">
+        <div id="login">
+            <img id="logo" src="img/logo.png" alt="Company Logo">
+            <h1 id="title">Protection Housing Assessment</h1>
+
+            <form action="login.php" method="post">
+                <label for="Username">Username:</label>
+                <input type="text" id="Username" name="Username" required><br>
+                <label for="Password">Password:</label>
+                <input type="Password" id="Password" name="Password" required><br>
+                <button type="submit" id="signin" class="btn">Sign In</button>
+            </form>
+
+            <a href="#" id="forgot">Forgot Password?</a>
+            <div id="other-action">
+                <div id="or">or</div>
+                <button id="signup" class="btn"><a href="login_page/create_account.html">Create Account</a></button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
