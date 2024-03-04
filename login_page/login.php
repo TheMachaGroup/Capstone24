@@ -1,51 +1,52 @@
 //The code below connects the login page to the database to validate the credentials in order to log in
 <?php
-// Establish a connection to the database
-$serverName = "tcp:usarcent2024.database.windows.net,1433";
-$connectionOptions = array(
-    "Database" => "USARCENTHousing-2024-2-21-19-19",
-    "Uid" => "USARCENT-HA",
-    "PWD" => "TravisBobby2024!",
-);
-
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-
-// Check the connection
-if (!$conn) {
-    die(print_r(sqlsrv_errors(), true));
+try {
+    $conn = new PDO(
+        "sqlsrv:server = tcp:usarcent2024.database.windows.net,1433; Database = USARCENTHousing-2024-2-21-19-19",
+        "USARCENT-HA",
+        "{TravisBobby2024!}"
+    );
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    // Log the error instead of directly printing it
+    error_log("Error connecting to SQL Server: " . $e->getMessage());
+    // Display a generic error message to the user
+    print("Error connecting to SQL Server.");
+    die();
 }
 
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get user input from the form
-    $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
-    $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
+// Get user input from the form
+$Username = isset($_POST['Username']) ? $_POST['Username'] : '';
+$Password = isset($_POST['Password']) ? $_POST['Password'] : '';
 
-    // Protect against SQL injection using parameterized queries
-    $params = array($Username, $Password);
-    $sql = "SELECT * FROM users WHERE Username=? AND Password=?";
-    
-    $result = sqlsrv_query($conn, $sql, $params);
+// Protect against SQL injection
+$Username = $conn->quote($Username);
+$Password = $conn->quote($Password);
 
-    // Check if there is a match
-    if ($result === false) {
-        // Query failed, handle the error (you might want to log or display an error message)
-        die(print_r(sqlsrv_errors(), true));
-    }
+// Query to check if the username and password match
+$sql = "SELECT * FROM users WHERE Username=$Username AND Password=$Password";
+$result = $conn->query($sql);
 
-    if (sqlsrv_has_rows($result)) {
-        // Successful login
-        header("Location: form.html");
-        exit();
-    } else {
-        // Invalid login credentials
-        $error_message = "Invalid login credentials";
-        // Pass the error message back to the login page
-        header("Location: index.html?error=" . urlencode($error_message));
-        exit();
-    }
+// Check if there is a match
+if ($result === false) {
+    // Query failed, handle the error (you might want to log or display an error message)
+    error_log("Error executing query: " . print_r($conn->errorInfo(), true));
+    print("Error validating credentials.");
+    die();
 }
 
-// Close the database connection
-sqlsrv_close($conn);
+if ($result->rowCount() > 0) {
+    // Successful login
+    header("Location: form.html");
+    exit();
+} else {
+    // Invalid login credentials
+    $error_message = "Invalid login credentials";
+    // Pass the error message back to the login page
+    header("Location: index.html?error=" . urlencode($error_message));
+    exit();
+}
+
+// Close the database connection (optional, as PDO will automatically close the connection when the script ends)
+// $conn = null;
 ?>
