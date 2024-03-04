@@ -5,7 +5,7 @@ try {
         "sqlsrv:server = tcp:usarcent2024.database.windows.net,1433; Database = USARCENTHousing-2024-2-21-19-19",
         "USARCENT-HA",
         "{TravisBobby2024!}"
-    );
+    ) echo "PHP database connected successfully successfully!";
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     // Log the error instead of directly printing it
