@@ -7,11 +7,11 @@
     
         try {
             // Define your database connection parameters
-            $serverName = "tcp:f23arcenthousing.database.windows.net,1433";
+            $serverName = "tcp:usarcent2024.database.windows.net,1433";
             $connectionOptions = array(
-                "Database" => "USARCENT Housing",
-                "Uid" => "CloudSAc0020864",
-                "PWD" => "Usarcent564!",
+                "Database" => "USARCENTHousing-2024-2-21-19-19",
+                "Uid" => "USARCENT-HA",
+                "PWD" => "TravisBobby2024!",
                 "Encrypt" => 1,
                 "TrustServerCertificate" => 0,
             );
