@@ -15,34 +15,35 @@ if (!$conn) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-// Get user input from the form
-$Username = $_POST['Username'];
-$Password = $_POST['Password'];
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get user input from the form
+    $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
+    $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
 
-// Protect against SQL injection
-$Username = sqlsrv_real_escape_string($conn, $Username);
-$Password = sqlsrv_real_escape_string($conn, $Password);
+    // Protect against SQL injection using parameterized queries
+    $params = array($Username, $Password);
+    $sql = "SELECT * FROM users WHERE Username=? AND Password=?";
+    
+    $result = sqlsrv_query($conn, $sql, $params);
 
-// Query to check if the username and password match
-$sql = "SELECT * FROM users WHERE Username='$Username' AND Password='$Password'";
-$result = sqlsrv_query($conn, $sql);
+    // Check if there is a match
+    if ($result === false) {
+        // Query failed, handle the error (you might want to log or display an error message)
+        die(print_r(sqlsrv_errors(), true));
+    }
 
-// Check if there is a match
-if ($result === false) {
-    // Query failed, handle the error (you might want to log or display an error message)
-    die(print_r(sqlsrv_errors(), true));
-}
-
-if (sqlsrv_has_rows($result)) {
-    // Successful login
-    header("Location: form.html");
-    exit();
-} else {
-    // Invalid login credentials
-    $error_message = "Invalid login credentials";
-    // Pass the error message back to the login page
-    header("Location: index.html?error=" . urlencode($error_message));
-    exit();
+    if (sqlsrv_has_rows($result)) {
+        // Successful login
+        header("Location: form.html");
+        exit();
+    } else {
+        // Invalid login credentials
+        $error_message = "Invalid login credentials";
+        // Pass the error message back to the login page
+        header("Location: index.html?error=" . urlencode($error_message));
+        exit();
+    }
 }
 
 // Close the database connection
