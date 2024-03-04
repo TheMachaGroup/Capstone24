@@ -4,7 +4,7 @@ try {
     $conn = new PDO(
         "sqlsrv:server = tcp:usarcent2024.database.windows.net,1433; Database = USARCENTHousing-2024-2-21-19-19",
         "USARCENT-HA",
-        "{TravisBobby2024!}"
+        "TravisBobby2024!"
     );
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
@@ -24,7 +24,7 @@ $Username = $conn->quote($Username);
 $Password = $conn->quote($Password);
 
 // Query to check if the username and password match
-$sql = "SELECT * FROM users WHERE Username=$Username AND Password=$Password";
+$sql = "SELECT * FROM Users WHERE Username=$Username AND Password=$Password";
 $result = $conn->query($sql);
 
 // Check if there is a match
