@@ -28,6 +28,11 @@ $sql = "SELECT * FROM users WHERE username='$Username' AND password='$Password'"
 $result = sqlsrv_query($conn, $sql);
 
 // Check if there is a match
+if ($result === false) {
+    // Query failed, handle the error (you might want to log or display an error message)
+    die(print_r(sqlsrv_errors(), true));
+}
+
 if (sqlsrv_has_rows($result)) {
     // Successful login
     header("Location: form.html");
