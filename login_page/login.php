@@ -33,7 +33,7 @@ if ($result === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-elseif (sqlsrv_has_rows($result)) {
+if (sqlsrv_has_rows($result)) {
     // Successful login
     header("Location: form.html");
     exit();
