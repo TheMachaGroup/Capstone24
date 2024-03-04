@@ -28,10 +28,14 @@ $result = $conn->query($sql);
 // Check if there is a match
 if ($result->num_rows > 0) {
     // Successful login
-    echo "Login successful!";
+    header("Location: form.html");
+    exit();
 } else {
     // Invalid login credentials
-    echo "Invalid login credentials";
+    $error_message = "Invalid login credentials";
+    // Pass the error message back to the login page
+    header("Location: index.html?error=" . urlencode($error_message));
+    exit();
 }
 
 // Close the database connection
