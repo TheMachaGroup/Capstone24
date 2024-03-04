@@ -24,19 +24,16 @@ $Username = sqlsrv_real_escape_string($conn, $Username);
 $Password = sqlsrv_real_escape_string($conn, $Password);
 
 // Query to check if the username and password match
-$sql = "SELECT * FROM users WHERE username=? AND password=?";
-$params = array($Username, $Password);
-$options = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
-
-$stmt = sqlsrv_query($conn, $sql, $params, $options);
+$sql = "SELECT * FROM users WHERE Username='$Username' AND Password='$Password'";
+$result = sqlsrv_query($conn, $sql);
 
 // Check if there is a match
-if ($stmt === false) {
+if ($result === false) {
     // Query failed, handle the error (you might want to log or display an error message)
     die(print_r(sqlsrv_errors(), true));
 }
 
-if (sqlsrv_has_rows($stmt)) {
+if (sqlsrv_has_rows($result)) {
     // Successful login
     header("Location: form.html");
     exit();
@@ -51,4 +48,3 @@ if (sqlsrv_has_rows($stmt)) {
 // Close the database connection
 sqlsrv_close($conn);
 ?>
- 
