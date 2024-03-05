@@ -37,7 +37,7 @@ if ($result->rowCount() > 0) {
     // Invalid login credentials
     $error_message = "Invalid login credentials";
     // Pass the error message back to the login page
-    header("Location: index.html?error=" . urlencode($error_message));
+    header("Location: index.html");
     exit();
 }
 
