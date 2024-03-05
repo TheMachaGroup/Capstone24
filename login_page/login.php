@@ -1,18 +1,12 @@
 //The code below connects the login page to the database to validate the credentials in order to log in
 <?php
 try {
-    $conn = new PDO(
-        "sqlsrv:server = tcp:usarcent2024.database.windows.net,1433; Database = USARCENTHousing-2024-2-21-19-19",
-        "USARCENT-HA",
-        "TravisBobby2024!"
-    );
+    $conn = new PDO("sqlsrv:server = tcp:usarcent2024.database.windows.net,1433; Database = USARCENTHousing-2024-2-21-19-19", "USARCENT-HA", "TravisBobby2024!");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    // Log the error instead of directly printing it
-    error_log("Error connecting to SQL Server: " . $e->getMessage());
-    // Display a generic error message to the user
+}
+catch (PDOException $e) {
     print("Error connecting to SQL Server.");
-    die();
+    die(print_r($e));
 }
 
 // Get user input from the form
