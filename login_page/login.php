@@ -14,10 +14,13 @@ catch (PDOException $e) {
 $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
 $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
 
+echo " <br/> under form section";
+
 // Protect against SQL injection using prepared statements
 $stmt = $conn->prepare("SELECT * FROM Users WHERE Username=? AND Password=?");
 $stmt->bind_param("ss", $Username, $Password);
 $stmt->execute();
+echo " <br/> under execution";
 
 // Check if there is a match
 $result = $stmt->get_result();
