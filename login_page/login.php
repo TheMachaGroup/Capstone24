@@ -17,7 +17,7 @@ $Username = $_POST['Username'] ?? '';
 $Password = $_POST['Password'] ?? '';
 
 // Construct the query (without considering SQL injection)
-$sql = "SELECT * FROM Users WHERE Username='$Username' AND Password='$Password'";
+$sql = "SELECT * FROM users WHERE Username='$Username' AND Password='$Password'";
 $result = $conn->query($sql);
 
 // Check if there is a match
