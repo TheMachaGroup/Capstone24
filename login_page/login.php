@@ -14,19 +14,19 @@ catch (PDOException $e) {
 
 // Get user input from the form
 $Username = $_POST['Username'] ?? '';
-$Password = $_POST['Password'] ?? '';
+$Password = $_POST['UserPassword'] ?? '';
 
 // Construct the query (without considering SQL injection)
-$sql = "SELECT * FROM users WHERE Username='$Username' AND Password='$Password'";
+$sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
 $result = $conn->query($sql);
 
 // Check if there is a match
 if ($result->num_rows > 0) {
-    // Successful login
+echo "Successful login";
 header("Location:form.html");
     exit();
 } else {
-    // Invalid login credentials
+echo "Invalid login credentials";
 header("Location:index.html");
     exit();
 }
