@@ -14,7 +14,7 @@ catch (PDOException $e) {
 
 // Get user input from the form
 $Username = $_POST['Username'] ?? '';
-$Password = $_POST['UserPassword'] ?? '';
+$Password = $_POST['Password'] ?? '';
 
 // Construct the query (without considering SQL injection)
 $sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
