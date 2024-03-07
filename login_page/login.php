@@ -3,7 +3,6 @@
 echo "Testing";
 try {
     $conn = mysqli_init();
-    mysqli_ssl_set($conn, NULL, NULL, "{path to CA cert}", NULL, NULL);
     mysqli_real_connect($conn, "usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306, MYSQLI_CLIENT_SSL);
 }
 catch (PDOException $e) {
