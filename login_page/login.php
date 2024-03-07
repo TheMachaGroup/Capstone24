@@ -12,7 +12,7 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
-/ Get user input from the form
+// Get user input from the form
 $Username = $_POST['Username'] ?? '';
 $Password = $_POST['Password'] ?? '';
 
