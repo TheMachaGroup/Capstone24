@@ -9,5 +9,19 @@ catch (PDOException $e) {
     print("Error connecting to SQL Server.");
     die(print_r($e));
 }
-echo "testing";
+// Example query
+$sql = "SELECT * FROM users";
+$result = $conn->query($sql);
+
+// Check if the query was successful
+if ($result === false) {
+    // Handle the error
+    echo "Error executing query: " . $conn->error;
+} else {
+    // Fetch and display the data
+    while ($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["UserID"] . " - Name: " . $row["Username"] . "<br>";
+    }
+}
+    
   ?> 
