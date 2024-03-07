@@ -1,8 +1,9 @@
 //The code below connects the login page to the database to validate the credentials in order to log in
 <?php
 try {
-    $conn = new PDO("sqlsrv:server = tcp:usarcent2024.database.windows.net,1433; Database = USARCENTHousing-2024-2-21-19-19", "USARCENT-HA", "TravisBobby2024!");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $con = mysqli_init();
+mysqli_ssl_set($con,NULL,NULL, "{path to CA cert}", NULL, NULL);
+mysqli_real_connect($conn, "usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306, MYSQLI_CLIENT_SSL);
 }
 catch (PDOException $e) {
     print("Error connecting to SQL Server.");
