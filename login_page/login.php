@@ -1,5 +1,6 @@
 //The code below connects the login page to the database to validate the credentials in order to log in
 <?php
+echo "Testing";
 try {
     $conn = mysqli_init();
     mysqli_ssl_set($conn, NULL, NULL, "{path to CA cert}", NULL, NULL);
@@ -9,7 +10,7 @@ catch (PDOException $e) {
     print("Error connecting to SQL Server.");
     die(print_r($e));
 }
-
+echo "Testing2";
 // Get user input from the form
 $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
 $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
