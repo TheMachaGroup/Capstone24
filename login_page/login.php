@@ -22,11 +22,11 @@ $result = $conn->query($sql);
 
 // Check if there is a match
 if ($result->num_rows > 0) {
-echo "Successful login";
+//Successful login
 header("Location:form.html");
     exit();
 } else {
-echo "Invalid login credentials";
+//Invalid login credentials
 header("Location:index.html");
     exit();
 }
