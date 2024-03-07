@@ -23,11 +23,11 @@ $result = $conn->query($sql);
 // Check if there is a match
 if ($result->num_rows > 0) {
     // Successful login
-    header("Location: form.html");
+    header("Location: https://usarcent.azurewebsites.net/form.html");
     exit();
 } else {
     // Invalid login credentials
-    header("Location: index.html");
+    header("Location: https://usarcent.azurewebsites.net/index.html");
     exit();
 }
 
