@@ -12,39 +12,25 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
-// Get user input from the form
-$Username = isset($_POST['Username']) ? $_POST['Username'] : '';
-$Password = isset($_POST['Password']) ? $_POST['Password'] : '';
+/ Get user input from the form
+$Username = $_POST['Username'] ?? '';
+$Password = $_POST['Password'] ?? '';
 
-// Protect against SQL injection using prepared statements
-$stmt = $conn->prepare("SELECT * FROM Users WHERE Username=? AND Password=?");
-$stmt->bind_param("ss", $Username, $Password);
-$stmt->execute();
+// Construct the query (without considering SQL injection)
+$sql = "SELECT * FROM Users WHERE Username='$Username' AND Password='$Password'";
+$result = $conn->query($sql);
 
 // Check if there is a match
-$result = $stmt->get_result();
-
-if ($result === false) {
-    // Query failed, handle the error (you might want to log or display an error message)
-    error_log("Error executing query: " . print_r($stmt->error, true));
-    print("Error validating credentials.");
-    die();
-}
-
 if ($result->num_rows > 0) {
     // Successful login
     header("Location: form.html");
     exit();
 } else {
     // Invalid login credentials
-    $error_message = "Invalid login credentials";
-    // Pass the error message back to the login page
     header("Location: index.html");
     exit();
 }
 
 // Close the database connection
-$stmt->close();
 $conn->close();
 ?>
-
