@@ -3,7 +3,7 @@
 echo "Testing";
 try {
     $conn = mysqli_init();
-    mysqli_real_connect($conn, "usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306, MYSQLI_CLIENT_SSL);
+    mysqli_real_connect($conn, "usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 }
 catch (PDOException $e) {
     print("Error connecting to SQL Server.");
