@@ -7,23 +7,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Get the form data
-    $First Name = $_POST['FirstName'];
-    $Last Name = $_POST['LastName'];
-    $Username = $_POST['Username'];
-    $Password = $_POST['UserPassword'];
-    $Role = $_POST['Role'];
+    $firstName = $_POST['FirstName'];
+    $lastName = $_POST['LastName'];
+    $username = $_POST['Username'];
+    $password = $_POST['UserPassword'];
+    $role = $_POST['Role'];  // Assuming you have an input with name="Role"
 
+    // Prepare and bind the SQL statement to check if the username already exists
+    $stmt = $conn->prepare('SELECT UserID, UserPassword FROM users WHERE username = ?');
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->store_result();
 
-        // Check if the account already exists in the database
-        if ($stmt->num_rows < 0) {
+    // Check if the account already exists in the database
+    if ($stmt->num_rows > 0) {
+        echo 'Account already exists, please create another!';
+    } else {
+        // Prepare and bind the SQL statement to insert a new account
+        $stmt = $conn->prepare('INSERT INTO users (FirstName, LastName, Username, UserPassword, Role) VALUES (?, ?, ?, ?, ?)');
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param('sssss', $firstName, $lastName, $username, $hashedPassword, $role);
+        
+        if ($stmt->execute()) {
             Header("Location: https://usarcent.azurewebsites.net/form.html");
             exit();
         } else {
-            echo 'Account already exists, please create another!';
-            }
-   
+            echo 'Error creating account: ' . $stmt->error;
+        }
+    }
 
     // Close the connection
+    $stmt->close();
     $conn->close();
 }
 ?>
