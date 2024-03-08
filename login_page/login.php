@@ -25,11 +25,11 @@ echo "constructing query";
 // Check if there is a match
 if ($result->num_rows > 0) {
 //Successful login
-header("Location:form.html");
+header("Location: form.html");
     exit();
 } else {
 //Invalid login credentials
-header("Location:index.html");
+header("Location: index.html");
     exit();
 }
 echo "checked for a match";
