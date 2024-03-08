@@ -27,7 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // Prepare and bind the SQL statement to insert a new account
         $stmt = $conn->prepare('INSERT INTO users (FirstName, LastName, Username, UserPassword, Role) VALUES (?, ?, ?, ?, ?)');
-        $stmt->bind_param('sssss', $FirstName, $LastName, $Username, $Password, $Role); {
+        $stmt->bind_param('sssss', $FirstName, $LastName, $Username, $Password, $Role);
+        
+        // Execute the SQL statement
+        if ($stmt->execute()) {
             header("Location: https://usarcent.azurewebsites.net/form.html");
             exit();
         } else {
