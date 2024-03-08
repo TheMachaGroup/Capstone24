@@ -15,10 +15,12 @@ catch (PDOException $e) {
 // Get user input from the form
 $Username = $_POST['Username'] ?? '';
 $Password = $_POST['Password'] ?? '';
+echo "received input from form";
 
 // Construct the query (without considering SQL injection)
 $sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
 $result = $conn->query($sql);
+echo "constructing query";
 
 // Check if there is a match
 if ($result->num_rows > 0) {
@@ -30,6 +32,7 @@ header("Location:form.html");
 header("Location:index.html");
     exit();
 }
+echo "checked for a match";
 
 // Close the database connection
 $conn->close();
