@@ -16,7 +16,7 @@ echo "connected to database";
 echo "received form data";
     
     // Prepare and bind the SQL statement to check if the username already exists
-    $stmt = $conn->prepare('SELECT UserID, UserPassword FROM users WHERE username = ?');
+    $stmt = $conn->prepare('SELECT UserID, UserPassword FROM users WHERE username = $Username');
     $stmt->bind_param('s', $username);
     $stmt->execute();
     $stmt->store_result();
@@ -26,7 +26,7 @@ echo "received form data";
         echo 'Account already exists, please create another!';
     } else {
         // Prepare and bind the SQL statement to insert a new account
-        $stmt = $conn->prepare('INSERT INTO users (FirstName, LastName, Username, UserPassword, Role) VALUES (?, ?, ?, ?, ?)');
+        $stmt = $conn->prepare('INSERT INTO users (FirstName, LastName, Username, UserPassword, Role) VALUES ($FirstName, $LastName, $Username, $Password, $Role)');
     echo "entered into database";
         
         if ($stmt->execute()) {
