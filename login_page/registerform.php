@@ -21,7 +21,7 @@
 			<li><img src="img/icons/log-out.svg" class="icon"><a href="index.html">Log Out</a></li>
 		</ul>
 	</nav>
-    <form action="login_page/register.php" method="POST">
+    <form action="register.php" method="POST">
         <div id="container1">
             <div id="container2">
                 <h1 id="title">Create account</h1>
