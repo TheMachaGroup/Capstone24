@@ -97,9 +97,3 @@ if ($stmt->fetch()) {
 $stmt->close();
 $conn->close();
 ?>
-
-	
-	<script src="nav.js" type="text/javascript"></script>
-	<script src="index.js" type="text/javascript"></script>
-</body>
-</html>
