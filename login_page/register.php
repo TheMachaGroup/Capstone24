@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Header("Location: https://usarcent.azurewebsites.net/form.html");
             exit();
         } else {
-            echo 'Account already exists, please choose another!';
+            echo 'Account already exists, please create another!';
             }
    
 
