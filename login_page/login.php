@@ -2,10 +2,9 @@
 <?php
 try {
     $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 }
 catch (PDOException $e) {
     print("Error connecting to MySQL Server.");
@@ -13,14 +12,28 @@ catch (PDOException $e) {
 }
 
 // Get user input from the form
-$Username = $_POST['Username'] ?? '';
-$Password = $_POST['Password'] ?? '';
+    $Username = validate($_POST['Username']);
+    $Password = validate($_POST['Password']);
 echo "received input from form";
 
-// Construct the query (without considering SQL injection)
-$sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
-$result = $conn->query($sql);
-echo "constructing query";
+    if (empty($Username)) {
+        header("Location: index.php?error=Username is required");
+        exit();
+    }elise if(empty($Password)){
+        header("Location: index.php?error=Password is required");
+        exit();
+    }else{$sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
+          $result = mysqli_query($conn, $sql);
+          if (mysql_num_rows(result)) {
+              echo "hello";
+          }
+    }
+}else{
+    header("Location: index.php");
+    exit();
+
+
+
 
 // Check if there is a match
 if ($result->num_rows > 0) {
