@@ -1,5 +1,4 @@
 <?php
-ob_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
@@ -51,7 +50,7 @@ if ($stmt->fetch()) {
 		<ul id="nav-bar-list">
 			<li id="id-container"><img src="img/logo.png" id="logo"><span id="logo_text">Housing Assessment</span><img src="img/icons/three-line.svg" id="collapse" class="collapse-style"></li><br>
 			<li id="user"><img src="img/icons/person.svg" class="icon"><span id="user-name">User Name</span></li>
-			<li><img src="img/icons/home.svg" class="icon"><a href="form.html">New Assessment</a></li>
+			<li><img src="img/icons/home.svg" class="icon"><a href="form.php">New Assessment</a></li>
 			<li><img src="img/icons/folder.svg" class="icon"><a href="manage_report/manage_report.html">Report Manager</a></li>
 			<li><img src="img/icons/setting.svg" class="icon"><a href="settings/settings.html">Settings</a></li>
 			<li><img src="img/icons/createaccount.svg" class="icon"><a href="login_page/registerform.php">Create Account</a></li>
@@ -65,21 +64,17 @@ if ($stmt->fetch()) {
 	<?php
 
     // Use a switch statement or if conditions to generate content based on the user role
-    switch ($userRole) {
+    switch ($Role) {
         case 'ADMIN':
             echo '<p>Welcome, Admin! You have access to all features.</p>';
             echo '<button type="button">Create Report</button> 
 	    echo '<button type="button">Create Report</button>
 <button id="add" class="pulse">+</button>
-<li><a href="Form.html" target="_self" style="text-decoration: none; color: black;">Begin New Assessment</a></li>';
+<li><a href="Form.html" target="_self" style="text-decoration: none; color= black;">Begin New Assessment</a></li>';
             break;
         case 'ANALYST':
-            echo '<p>Welcome, Analyst! You have limited access.</p>';
+            echo '<p>Welcome, Analyst! You have limited access and are unable to complete assessments.</p>';
             // Hide the "Create Report" button for Analysts
-            break;
-        // Add more cases for other roles if needed
-        default:
-            echo '<p>Welcome! You have a default role.</p>';
             break;
     }
 
