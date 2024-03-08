@@ -20,11 +20,6 @@
                 <input type="password" id="Password" name="Password" placeholder="Password" required><br>
                 <button type="submit" id="signin" class="btn">Login</button>
             </form>
-
-            <a href="#" id="forgot">Forgot Password?</a>
-            <div id="other-action">
-                <div id="or">or</div>
-                <button id="signup" class="btn"><a href="login_page/register.html">Create Account</a></button>
             </div>
         </div>
     </div>
