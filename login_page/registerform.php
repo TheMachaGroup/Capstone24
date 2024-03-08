@@ -33,8 +33,8 @@
                     <input class="input_box" required>
                     <label class="box_label">Password</label>
                     <input class="input_box" required>
-		    <label class="box_label">ADMIN/ANALYST</label>
-                    <input class="input_box" required>
+		    <label class="box_label">Role</label>
+                    <input class="input_box" placeholder="ADMIN or ANALYST" required>
                 </div>
 
                 <button type="submit" id="register" class="btn">Create Account</button>
