@@ -19,8 +19,7 @@ $Password = validate($_POST['Password']);
 $sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
 $result = mysqli_query($conn, $sql);
 
-if ($result) {
-    if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
         if ($row['Username'] === $Username && $row['UserPassword'] === $Password) {
             echo "hello";
