@@ -34,4 +34,5 @@ if (mysqli_num_rows($result) === 1) {
 
 // Close the database connection
 $conn->close();
+ob_end_flush();
 ?>
