@@ -24,7 +24,7 @@
             <a href="#" id="forgot">Forgot Password?</a>
             <div id="other-action">
                 <div id="or">or</div>
-                <button id="signup" class="btn"><a href="login_page/create_account.html">Create Account</a></button>
+                <button id="signup" class="btn"><a href="login_page/register.php">Create Account</a></button>
             </div>
         </div>
     </div>
