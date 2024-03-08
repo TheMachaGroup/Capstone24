@@ -1,4 +1,5 @@
 <?php
+ob_start();
 function validate($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
