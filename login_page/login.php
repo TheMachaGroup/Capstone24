@@ -20,8 +20,7 @@ $sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Passwo
 $result = mysqli_query($conn, $sql);
 
 if ($result) {
-    // Use mysqli_num_rows instead of mysql_num_rows
-    if (mysqli_num_rows($result) === 1) {
+    if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         if ($row['Username'] === $Username && $row['UserPassword'] === $Password) {
             echo "hello";
