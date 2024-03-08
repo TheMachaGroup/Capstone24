@@ -22,7 +22,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
         if ($row['Username'] === $Username && $row['UserPassword'] === $Password) {
-            header("Location: https://usarcent.azurewebsites.net/form.html");
+            header("Location: https://usarcent.azurewebsites.net/form.php");
             exit();
     } else {
         echo "Invalid credentials";
