@@ -36,13 +36,10 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 // Prepare and bind the SQL statement 
-$stmt = $mysqli->prepare("INSERT INTO Users (FirstName, LastName, Username, UserPassword) VALUES (?, ?, ?, ?)"); $stmt->bind_param("sss", $firstname, $lastname, $username, $userpassword); 
+$stmt = $mysqli->prepare("INSERT INTO users (FirstName, LastName, Username, UserPassword) VALUES (?, ?, ?, ?)"); $stmt->bind_param("sss", $firstname, $lastname, $username, $userpassword); 
 
 // Get the form data 
 $firstname = $_POST['FirstName']; $lastname = $_POST['LastName']; $username = $_POST['Username']; $password = $_POST['UserPassword']; 
-
-// Hash the password 
-$password = password_hash($password, PASSWORD_DEFAULT); 
 
 // Execute the SQL statement 
 if ($stmt->execute()) { echo "New account created successfully!"; } else { echo "Error: " . $stmt->error; } 
