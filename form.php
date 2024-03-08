@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-	// Retrieve the user's role from the database based on their login credentials
+	// Retrieve the user's role from the database based on their login credential
 // Replace the following lines with your actual database query and authentication logic
 $Username = $_POST['Username'];
 $Password = $_POST['UserPassword'];
