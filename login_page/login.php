@@ -24,7 +24,7 @@ if ($result) {
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
         if ($row['Username'] === $Username && $row['UserPassword'] === $Password) {
-            header("Location: Form.html");
+            echo "hello";
             exit();
     } else {
         echo "Invalid credentials";
