@@ -7,40 +7,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Get the form data
-    $firstname = $_POST['FirstName'];
-    $lastname = $_POST['LastName'];
-    $username = $_POST['Username'];
-    $password = $_POST['UserPassword'];
+    $First Name = $_POST['FirstName'];
+    $Last Name = $_POST['LastName'];
+    $Username = $_POST['Username'];
+    $Password = $_POST['UserPassword'];
+    $ADMIN/ANALYST = $_POST['Role'];
 
-    // Prepare and bind the SQL statement to check if the username already exists
-    if ($stmt = $conn->prepare('SELECT UserID, UserPassword FROM users WHERE username = ?')) {
-        // Bind parameters (s = string)
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $stmt->store_result();
 
         // Check if the account already exists in the database
-        if ($stmt->num_rows > 0) {
-            echo 'Username exists, please choose another!';
+        if ($stmt->num_rows < 0) {
+            Header("Location: https://usarcent.azurewebsites.net/form.html");
+            exit();
         } else {
-            // Prepare and bind the SQL statement to insert a new account
-            if ($stmt = $conn->prepare('INSERT INTO users (FirstName, LastName, Username, UserPassword) VALUES (?, ?, ?, ?)')) {
-                // Hash the password using the PHP password_hash function
-                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                // Bind parameters (sss = string, string, string)
-                $stmt->bind_param('ssss', $firstname, $lastname, $username, $hashedPassword);
-                $stmt->execute();
-                echo 'You have successfully registered! You can now login!';
-            } else {
-                // Something is wrong with the SQL statement
-                echo 'Could not prepare statement!';
+            echo 'Account already exists, please choose another!';
             }
-        }
-        $stmt->close();
-    } else {
-        // Something is wrong with the SQL statement
-        echo 'Could not prepare statement!';
-    }
+   
 
     // Close the connection
     $conn->close();
