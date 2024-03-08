@@ -37,4 +37,5 @@ if ($stmt->fetch()) {
 // Close the database connection
 $stmt->close();
 $conn->close();
+ob_end_flush();
 ?>
