@@ -69,9 +69,9 @@ if ($stmt->fetch()) {
         case 'ADMIN':
             echo '<p>Welcome, Admin! You have access to all features.</p>';
             echo '<button type="button">Create Report</button> 
-	    <button id="add" class="pulse">+</li></button>'<li>
-	<a href="Form.html" target="_self" style="text-decoration: none; color: black;">Begin New Assessment</a>
-	</li>;
+	    echo '<button type="button">Create Report</button>
+<button id="add" class="pulse">+</button>
+<li><a href="Form.html" target="_self" style="text-decoration: none; color: black;">Begin New Assessment</a></li>';
             break;
         case 'ANALYST':
             echo '<p>Welcome, Analyst! You have limited access.</p>';
