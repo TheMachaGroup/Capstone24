@@ -25,28 +25,13 @@ echo "received input from form";
         exit();
     }else{$sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
           $result = mysqli_query($conn, $sql);
-          if (mysql_num_rows(result)) {
+          if (mysql_num_rows($result)) {
               echo "hello";
           }
     }
 }else{
     header("Location: index.php");
     exit();
-
-
-
-
-// Check if there is a match
-if ($result->num_rows > 0) {
-//Successful login
-header("Location: form.html");
-    exit();
-} else {
-//Invalid login credentials
-header("Location: index.html");
-    exit();
-}
-echo "checked for a match";
 
 // Close the database connection
 $conn->close();
