@@ -15,10 +15,10 @@
 
             <form action="login_page/login.php" method="POST">
                 <label for="Username">Username:</label>
-                <input type="text" id="Username" name="Username" required><br>
+                <input type="text" id="Username" name="Username" placeholder="Username" required><br>
                 <label for="Password">Password:</label>
-                <input type="password" id="Password" name="Password" required><br>
-                <button type="submit" id="signin" class="btn">Sign In</button>
+                <input type="password" id="Password" name="Password" placeholder="Password" required><br>
+                <button type="submit" id="signin" class="btn">Login</button>
             </form>
 
             <a href="#" id="forgot">Forgot Password?</a>
