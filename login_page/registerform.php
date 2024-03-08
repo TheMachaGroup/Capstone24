@@ -25,16 +25,29 @@
         <div id="container1">
             <div id="container2">
                 <h1 id="title">Create account</h1>
-                    <label class="box_label">FirstName</label>
-                    <input class="input_box" required>
-                    <label class="box_label">LastName</label>
-                    <input class="input_box" required>
-                    <label class="box_label">Username</label>
-                    <input class="input_box" required>
-                    <label class="box_label">Password</label>
-                    <input class="input_box" required>
-		    <label class="box_label">Role</label>
-                    <input class="input_box" placeholder="ADMIN or ANALYST" required>
+                    <form action="register.php" method="POST">
+    <div id="container1">
+        <div id="container2">
+            <h1 id="title">Create account</h1>
+            <label class="box_label">First Name</label>
+            <input class="input_box" name="FirstName" required>
+
+            <label class="box_label">Last Name</label>
+            <input class="input_box" name="LastName" required>
+
+            <label class="box_label">Username</label>
+            <input class="input_box" name="Username" required>
+
+            <label class="box_label">Password</label>
+            <input class="input_box" name="UserPassword" required>
+
+            <label class="box_label">Role</label>
+            <input class="input_box" name="Role" placeholder="ADMIN or ANALYST" required>
+        </div>
+
+        <button type="submit" id="register" class="btn">Create Account</button>
+    </div>
+</form>
                 </div>
 
                 <button type="submit" id="register" class="btn">Create Account</button>
