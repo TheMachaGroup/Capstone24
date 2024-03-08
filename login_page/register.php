@@ -1,3 +1,5 @@
+//this code has not been tested as of 3/7 
+
 <form action="register.php" method="post">
   <label for="username">Username:</label> 
   <input id="username" name="username" required="" type="text" />
@@ -8,19 +10,22 @@
   <input name="register" type="submit" value="Register" />
 </form>
 
-?php if (isset($_POST['register'])) { 
+?php if (isset($_POST['register'])) {
+    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-// Connect to the database 
-$mysqli = new mysqli("localhost", "username", "password", "login_system"); 
-
-// Check for errors 
-if ($mysqli->connect_error) { die("Connection failed: " . $mysqli->connect_error); } 
-
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+}
+catch (PDOException $e) {
+    print("Error connecting to MySQL Server.");
+    die(print_r($e));
+}
 // Prepare and bind the SQL statement 
-$stmt = $mysqli->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)"); $stmt->bind_param("sss", $username, $email, $password); 
+$stmt = $mysqli->prepare("INSERT INTO Users (FirstName, LastName, Username, UserPassword) VALUES (?, ?, ?, ?)"); $stmt->bind_param("sss", $firstname, $lastname, $username, $userpassword); 
 
 // Get the form data 
-$username = $_POST['username']; $email = $_POST['email']; $password = $_POST['password']; 
+$firstname = $_POST['FirstName']; $lastname = $_POST['LastName']; $username = $_POST['Username']; $password = $_POST['UserPassword']; 
 
 // Hash the password 
 $password = password_hash($password, PASSWORD_DEFAULT); 
