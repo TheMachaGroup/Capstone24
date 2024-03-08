@@ -1,54 +1,40 @@
-//The code below is the connection to the database we created in Phase 2
-//Depending on how ownership is transferred, This may need to be updated
-
 <?php
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    
-        try {
-            // Define your database connection parameters
-            $serverName = "tcp:usarcent2024.database.windows.net,1433";
-            $connectionOptions = array(
-                "Database" => "USARCENTHousing-2024-2-21-19-19",
-                "Uid" => "USARCENT-HA",
-                "PWD" => "TravisBobby2024!",
-                "Encrypt" => 1,
-                "TrustServerCertificate" => 0,
-            );
-    
-            // Establish a database connection
-            $conn = sqlsrv_connect($serverName, $connectionOptions);
-    
-            if (!$conn) {
-                die(print_r(sqlsrv_errors(), true));
-            }
-    
-            // Retrieve form data
-            $totalRooms = $_POST["totalApartmentsInComplex"];
-            $totalPeople = $_POST["totalPersonnelInComplex"];
-        
-            
-            // Add more fields as needed
-    
-            // Define your SQL query to insert data into a table (modify the table and column names accordingly)
-            $sql = "INSERT INTO Occupancy_Information (TotalApartmentsInComplex, TotalPersonnelInComplex) VALUES (totalRooms, totalPeople)";
-            $params = array($totalApartmentsInComplex, $totalPersonnelInComplex);
-            $stmt = sqlsrv_query($conn, $sql, $params);
-    
-            if ($stmt === false) {
-                die(print_r(sqlsrv_errors(), true));
-            }
-    
-            // Close the database connection
-            sqlsrv_close($conn);
-    
-            // Redirect to a confirmation page
-            header("Location: confirmation.html");
-            exit();
-            
-        } catch (Exception $e) {
-            // Handle any exceptions or errors here
-            echo "An error occurred: " . $e->getMessage();
-        	}
-   	}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    echo "Connected to database<br>";
+
+// Retrieve the user's role from the database based on their login credentials
+$Username = $_POST['Username'];
+$Password = $_POST['UserPassword'];
+
+// Example query to retrieve the user role based on the username and password
+$query = "SELECT Role FROM users WHERE Username = ? AND UserPassword = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('ss', $Username, $Password);
+$stmt->execute();
+$stmt->bind_result($userRole);
+
+// Check if the user exists and get their role
+if ($stmt->fetch()) {
+    // Start output buffering to capture HTML content
+    ob_start();
+  
+    // Use a switch statement or if conditions to generate content based on the user role
+    switch ($Role) {
+        case 'ADMIN':
+            echo '<p>Welcome, Admin! You have access to all features.</p>';
+            echo '<button type="button">Create Report</button>';
+            break;
+        case 'ANALYST':
+            echo '<p>Welcome, Analyst! You have limited access.</p>';
+            break;
+    }
+
+// Close the database connection
+$stmt->close();
+$conn->close();
 ?>
