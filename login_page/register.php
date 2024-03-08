@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Last Name = $_POST['LastName'];
     $Username = $_POST['Username'];
     $Password = $_POST['UserPassword'];
-    $ADMIN/ANALYST = $_POST['Role'];
+    $Role = $_POST['Role'];
 
 
         // Check if the account already exists in the database
