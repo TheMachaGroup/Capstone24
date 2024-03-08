@@ -34,57 +34,18 @@
 	</nav>
 	
 	<div id="title-container">
-		<h1 class="title">Your Files</h1>
+		<h1 class="title">New Assessment</h1>
 		<button id="add" class="pulse">+</li></button>
 	</div>
 	<div id="add-option"> <!--This is the code for the the add nef form button goint to the Assessment Form Page-->
 		<ul>
 			<li>
-				<a href="Form.html" target="_self" style="text-decoration: none; color: black;">Create Report</a>
+				<a href="Form.html" target="_self" style="text-decoration: none; color: black;">Begin New Assessment</a>
 			</li>
 		</ul>
 	</div>
-	<div class="subtitle"><div>Recently Opened</div></div>
-	<div id="container">
-		<div class="container_child">
-			<div class="img-container"><img src="img/document.png" alt="document-placeholder" class="thumbnail">
-				<div class="title-container">Report Name</div>
-			</div>
-		</div>
-	</div>
 
-	<table> <!--This is where the data is shown to the user-->
-		<tr>
-		  <th id="file-name">File Names</th>
-		  <th id="creator-name">Creator</th>
-		  <th id="modified-name">Last Modified</th>
-		  <th id="modified-name">Edited By</th>
-		  <th id="">Action</th>
-		</tr>
-		<tr>
-                   <td>Building 1</td>
-                   <td>Tristan</td>
-                   <td>Nov 28, 2023</td>
-                   <td>USARCENT Group</td>
-
- 
-
-	        </tr>
-		<tr>
-		  <td>Alfreds Futterkiste</td>
-		  <td>You</td>
-		  <td>Nov 21, 2023</td>
-		  <td>Tom</td>
-		  <td ><img src="./img/icons/three-dot.svg" alt=""id="action"></td>
-		</tr>
-		<tr>
-		  <td>Centro comercial Moctezuma</td>
-		  <td>You</td>
-		  <td>Nov 22, 1990</td>
-		  <td>Tom</td>
-		  <td ><img src="./img/icons/three-dot.svg" alt="" id="action"></td>
-		</tr>
-	</table>
+	
 	<script src="nav.js" type="text/javascript"></script>
 	<script src="index.js" type="text/javascript"></script>
 </body>
