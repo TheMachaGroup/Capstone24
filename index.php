@@ -14,6 +14,9 @@
             <h1 id="title">Protection Housing Assessment</h1>
 
             <form action="login_page/login.php" method="POST">
+                <?php if (isset($_GET['error'])) { ?>
+                    <p class="error"><?php echo $_GET['error']; ?></p>
+                <?php } ?>
                 <label for="Username">Username:</label>
                 <input type="text" id="Username" name="Username" placeholder="Username" required><br>
                 <label for="Password">Password:</label>
