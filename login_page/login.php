@@ -12,12 +12,11 @@ catch (PDOException $e) {
 // Get user input from the form
     $Username = validate($_POST['Username']);
     $Password = validate($_POST['Password']);
-echo "received input from form";
 
     if (empty($Username)) {
         header("Location: index.php?error=Username is required");
         exit();
-    }elise if(empty($Password)){
+    }else if(empty($Password)){
         header("Location: index.php?error=Password is required");
         exit();
     }else{$sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
