@@ -25,9 +25,9 @@
         <div id="container1">
             <div id="container2">
                 <h1 id="title">Create account</h1>
-                    <label class="box_label">First Name</label>
+                    <label class="box_label">FirstName</label>
                     <input class="input_box" required>
-                    <label class="box_label">Last Name</label>
+                    <label class="box_label">LastName</label>
                     <input class="input_box" required>
                     <label class="box_label">Username</label>
                     <input class="input_box" required>
