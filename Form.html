@@ -1,208 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="home.css">
-
-    <title>Assessment Form</title>
-    <link href="Assessment_Form/form.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Assessment Form</title>
+    	<link href="Assessment_Form/form.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
 
-        .tiles-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .tile {
-            width: calc(20% - 20px);
-			height: 170px;
-            margin: 10px;
-            padding: 0; /* Remove the padding */
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-			justify-content: flex-end; /* Align text to the bottom */
-        }
-
-        .tile-content {
-            padding: 20px; /* Add padding for text */
+		.button {
+			position: absolute;
 			text-align: center;
-        }
+			text-decoration: none;
+			color: #ffffff;
+			background-color: #7aa8b7;
+			border-radius: 6px;
+			outline: none;
+			top: 7.5%;
+				right: 65px;
+			width: 175px;
+				height: 120px;
+			font-size: 30px;
+			vertical-align: middle;
+			line-height: 115px;
+		}
 
-        .tile:hover {
-            background-color: #f0f0f0;
-        }
+		div.scroll {
+			width: auto;
+			height: 650px;
+			overflow-x: hidden;
+			overflow-y: auto;
+			text-align: center;
+			padding: 20px;
+		}
 
-        .submit-button {
-            display: block;
-            margin: 0 auto;
-            padding: 10px 20px;
-            background-color: rgba(0, 0, 139, 0.9);
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+	    	input[required] {
+			background-image: radial-gradient
+			(
+		            red 25%,
+		            transparent 26%
+		        ),
+		        radial-gradient(red 25%, transparent 26%);
+		        background-size: 1.2em 1.2em;
+		        background-position: right top;
+		        background-repeat: no-repeat;
+			border-color: red;
+		}
+
+  </style>
 
 </head>
-
 <body>
-    <nav id="nav-bar">
-        <ul id="nav-bar-list">
-            <li id="id-container"><img src="img/logo.png" id="logo"><span id="logo_text">Housing Assessment</span><img
-                    src="img/icons/three-line.svg" id="collapse" class="collapse-style"></li><br>
-            <li id="user"><img src="img/icons/person.svg" class="icon"><span id="user-name">User Name</span></li>
-            <li><img src="img/icons/home.svg" class="icon"><a href="index.html">Home</a></li>
-            <li><img src="img/icons/folder.svg" class="icon"><a
-                    href="manage_report/manage_report.html">Report Manager</a></li>
-            <li><img src="img/icons/setting.svg" class="icon"><a href="settings/settings.html">Settings</a></li>
-            <li><img src="img/icons/help.svg" class="icon"><a href="help_page/help.html">Help</a></li>
-            <li><img src="img/icons/log-out.svg" class="icon"><a href="login_page/login.html">Log Out</a></li>
+	<nav id="nav-bar">
+		<ul id="nav-bar-list">
+			<li id="id-container"><img src="img/logo.png" id="logo"><span id="logo_text">Housing Assessment</span><img src="img/icons/three-line.svg" id="collapse" class="collapse-style"></li><br>
+			<li id="user"><img src="img/icons/person.svg" class="icon"><span id="user-name">User Name</span></li>
+			<li><img src="img/icons/home.svg" class="icon"><a href="index.html">Home</a></li>
+			<li><img src="img/icons/folder.svg" class="icon"><a href="manage_report/manage_report.html">Report Manager</a></li>
+			<li><img src="img/icons/setting.svg" class="icon"><a href="settings/settings.html">Settings</a></li>
+			<li><img src="img/icons/help.svg" class="icon"><a href="help_page/help.html">Help</a></li>
+			<li><img src="img/icons/log-out.svg" class="icon"><a href="login_page/login.html">Log Out</a></li>
 
-        </ul>
-    </nav>
-    <!-- Start of messing with the code-->
-    <div id="title-container">
-        <h1 class="title">Create Report</h1>
-    </div>
-    <div class="tiles-container">
-        <div class="tile" onclick="window.location.href = 'assess1.html';">
-            <div class="tile-content">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/014/391/893/small/home-icon-isolated-on-transparent-background-black-symbol-for-your-design-free-png.png" alt="House Icon" style="width:190px;height:100px;">
-                <br>
-                Housing / Office Area Information
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess2.html';">
-            <div class="tile-content">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Office_building_icon.png" alt="Building Icon" style="width:100px;height:100px;">
-                <br>
-                Type of Residence / Office Space
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess3.html';">
-            <div class="tile-content">
-                <img src="https://www.freeiconspng.com/thumbs/group-png/group-of-people-in-a-formation-23.png" alt="Occupancy Icon" style="width:110px;height:110px;">
-                <br>
-                Occupancy
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess4.html';">
-            <div class="tile-content">
-                <img src="https://png.pngtree.com/png-clipart/20220705/ourmid/pngtree-compass-icon-vector-transparent-png-image_5686571.png" alt="Occupancy Icon" style="width:125px;height:125px;">
-                <br>
-                Stand Off Area
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess5.html';">
-            <div class="tile-content">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/019/787/048/small_2x/car-parking-icon-parking-space-on-transparent-background-free-png.png" alt="Occupancy Icon" style="width:175px;height:110px;">
-                <br>
-                Parking
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess6.html';">
-            <div class="tile-content">
-                <img src="https://static.vecteezy.com/system/resources/previews/035/461/207/original/ai-generated-security-cctv-camera-on-transparent-background-free-png.png" alt="Occupancy Icon" style="width:110px;height:110px;">
-                <br>
-                Entry and Circulation Control
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess7.html';">
-            <div class="tile-content">
-                <img src="https://images.vexels.com/media/users/3/150102/isolated/preview/bf66be3cbab0566d0d7bebe6ea362147-water-tower-icon.png" alt="Water Icon" style="width:120px;height:120px;">
-                <br>
-                Water Storage System
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess8.html';">
-            <div class="tile-content">
-                <img src="https://static.vecteezy.com/system/resources/previews/015/072/296/non_2x/teamwork-design-illustration-isolated-on-transparent-background-free-png.png" alt="Water Icon" style="width:117px;height:117px;">
-                <br>
-                Demographics
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess9.html';">
-            <div class="tile-content">
-                <img src="https://static.thenounproject.com/png/1059004-200.png" alt="Water Icon" style="width:120px;height:120px;">
-                <br>
-                Safe Rally Points
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess10.html';">
-            <div class="tile-content">
-                <img src="https://www.freeiconspng.com/thumbs/secure-icon-png/lock-icon-17.png" alt="Lock Icon" style="width:120px;height:120px;">
-                <br>
-                Perimeter Security
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess11.html';">
-            <div class="tile-content">
-                <img src="https://pngimg.com/d/guard_PNG15.png" alt="Lock Icon" style="width:100px;height:120px;">
-                <br>
-                Security Manning
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess12.html';">
-            <div class="tile-content">
-                <img src="https://static.thenounproject.com/png/2445077-200.png" alt="Lock Icon" style="width:110px;height:100px;">
-                <br>
-                Residential Housing Area General Information
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess13.html';">
-            <div class="tile-content">
-                <img src="https://media.istockphoto.com/id/687450814/vector/police-fire-doctor-emergency-team-silhouettes.jpg?s=612x612&w=0&k=20&c=rgrwH5H1dJzrXAjTyOjqv7Whh38bC5MDcuowhv3iYeM=" alt="Lock Icon" style="width:100px;height:115px;">
-                <br>
-                Contingency Planning
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess14.html';">
-            <div class="tile-content">
-                <img src="https://static.thenounproject.com/png/3937362-200.png" alt="Lock Icon" style="width:100px;height:100px;">
-                <br>
-                Positive / Negative Aspects
-            </div>
-        </div>
-        <div class="tile" onclick="window.location.href = 'assess15.html';">
-            <div class="tile-content">
-                <img src="https://cdn-icons-png.flaticon.com/512/25/25663.png" alt="Lock Icon" style="width:85px;height:85px;">
-                <br>
-                Annual Assessment Residential Security Office Comments
-            </div>
-        </div>
-    </div>
+		</ul>
+	</nav>
+	<!--Change this to Form.php and Post when formulating data is ready-->
+	<form action="confirmation.html" method="GET"> <!--This is the start of the form. It will later use the information in form.php to push data to the database-->
+		<div class="scroll">
+		
+			<strong><u>HOUSING / OFFICE AREA INFORMATION</u></strong><br><br>
+			
+				<label for="HousingAssessment">Report Name:</label>
+				<input type="text" id="HousingAssessment" name="HousingAssessment" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+			
+				<label for="fname">Building Name:</label>
+				<input type="text" id="fname" name="fname" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
 
-    <button class="submit-button" onclick="submitForm()">Submit</button>
+				<label for="gps">GPS:</label>
+				<input type="text" id="gps" name="gps" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+				
 
-    <script>
-        // JavaScript functions for handling tile clicks and form submission
-        function goToPage(pageName) {
-            // Implement logic to navigate to the respective page based on the pageName
-            console.log(`Navigating to ${pageName} page`);
-        }
+				<label for="image">Image: </label>
+				<input type="file" id="user" capture="user" accept="image/*" multiple> <!--This will use the user's camera if they are on a mobile browser-->
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
 
-        function submitForm() {
-            // Implement logic to submit the form
-            console.log('Form submitted');
-        }
-    </script>
-    <!-- End of messing with the code-->
-    <!--This will implement the required interactions for a visually smoother experience-->
-    <script src="./Assessment_Form/form.js" type="text/javascript"></script>
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+			
+				<strong><u>TYPE OF RESIDENCE / OFFICE SPACE</u></strong><br><br>
+
+				<label for="lname">Address/Location:</label>
+				<input type="text" id="lname" name="lname" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="phoneNumber">Building Phone Number:</label>
+				<input type="text" id="phoneNumber" value="xxx-xxx-xxxx" name="phoneNumber" maxlength="12">
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="unitType">Unit Type</label>
+				<select class="form-control">
+					<option>Single Family Unit</option>
+					<option>Multi-Family Unit</option>
+				</select>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="spaceType">Space Type</label>
+				<select class="form-control">
+					<option>Apartment</option>
+					<option>Office Space</option>
+				</select>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="buildings"># of Buildings:</label>
+				<input type="number" id="buildings" name="buildings" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+				
+				<label for="floors"># of Floors:</label>
+				<input type="number" id="floors" name="floors" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="closed">Is ground floor closed in?</label>
+				<select class="form-control">
+					<option>No</option>
+					<option>Yes</option>
+				</select>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="ofComments">Additional Information:</label>
+				<input type="text" id="ofComments" name="ofComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>OCCUPANCY</u></strong><br><br>
+
+				<label for="totalRooms"># of Rooms in Complex:</label>
+				<input type="number" id="totalRooms" name="totalRooms" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="totalPeople"># of People in Complex:</label>
+				<input type="number" id="totalPeople" name="totalPeople" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="occupancyComments">Additional Information:</label>
+				<input type="text" id="occupancyComments" name="occupancyComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>STAND OFF AREA</u></strong><br><br>
+
+				<input type="checkbox" id="soa" name="soa">
+				<label for="soa"> North</label> - 
+				
+				<label for="nObstructions">Additional Information:</label>
+				<input type="text" id="nObstructions" name="nObstructions"><br><br>
+
+				<input type="checkbox" id="soa" name="soa">
+				<label for="soa"> South</label> - 
+				
+				<label for="sObstructions">Additional Information:</label>
+				<input type="text" id="sObstructions" name="sObstructions"><br><br>
+
+				<input type="checkbox" id="soa" name="soa">
+				<label for="soa"> East</label> - 
+				
+				<label for="eObstructions">Additional Information:</label>
+				<input type="text" id="eObstructions" name="eObstructions"><br><br>
+
+				<input type="checkbox" id="soa" name="soa">
+				<label for="soa"> West</label> - 
+				
+				<label for="wObstructions">Additional Information:</label>
+				<input type="text" id="wObstructions" name="wObstructions"><br><br>
+
+				<label for="soaComments">Additional Information:</label>
+				<input type="text" id="soaComments" name="soaComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>PARKING</u></strong><br><br>
+
+				<label for="fname">Location of Parking Area (Inside, Underground or Complex):</label>
+				<input type="text" id="ParkingArea" name="ParkingArea" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Security Provided to Parked Vehicles (Gates, CCTV, Walls, Guards):</label>
+				<input type="text" id="ParkSec" name="ParkSec" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Is Parking Area Lighted?</label>
+				<input type="text" id="Light" name="Light" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="pComments">Additional Information:</label>
+				<input type="text" id="pComments" name="pComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>ENTRY AND CIRCULATION CONTROL</u></strong><br><br>
+
+				<label for="closed">Are Personal and Vehciles outside Monitored?</label>
+				<select class="form-control">
+					<option>No</option>
+					<option>Yes</option>
+				</select>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="closed">Is entry to the location controlled? (Entrances/Monitored)</label>
+				<select class="form-control">
+					<option>No</option>
+					<option>Yes</option>
+				</select>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>WATER STORAGE SYSTEM</u></strong><br><br>
+
+				<label for="fname">Is Access Secure:</label>
+				<input type="text" id="WSS" name="WSS" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Locked Container / Structure:</label>
+				<input type="text" id="LockedWSS" name="LockedWSS" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+			
+			<strong><u>DEMOGRAPHICS</u></strong><br><br>
+
+				<label for="fname">Surrounding Population:</label>
+				<input type="text" id="SP" name="SP" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Crime and Violance History:</label>
+				<input type="text" id="Crime" name="Crime" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>SAFE RALLY POINTS</u></strong><br><br>
+
+				<label for="fname">Parking distance from Complex:</label>
+				<input type="text" id="ComplexDistance" name="ComplexDistance" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">REINFORCED BASEMENT OR PARKING AREA:</label>
+				<input type="text" id="Reinforced" name="Reinforced" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Shield Evacuation site 100-200 meters from complex:</label>
+				<input type="text" id="Shield" name="Shield" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Reinforced Concrete Covered stairwell in Facility:</label>
+				<input type="text" id="ReStairwell" name="ReStairwell" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>PERIMETER SECURITY</u></strong><br><br>
+
+				<label for="fname">Perimeter Barriers, Type of Construction, Minimum 6 feet class:</label>
+				<input type="text" id="PB" name="PB" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Perimeter Lighting:</label>
+				<input type="text" id="PL" name="PL" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Gated Entrance:</label>
+				<input type="text" id="GatedEntrance" name="GatedEntrance" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Gate Guard:</label>
+				<input type="text" id="GateGuard" name="GateGuard" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>SECURIRTY Manning</u></strong><br><br>
+
+				<label for="fname">Subcontracted Guards on Premises (24 Hours):</label>
+				<input type="text" id="subGuards" name="subGuards" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Military Security Guards on Premises:</label>
+				<input type="text" id="Military" name="Military" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>RESIDENTAL HOUSING AREA GENERAL INFORMATION</u></strong><br><br>
+
+				<label for="fname">Who Maintains keys to all building Areas?</label>
+				<input type="text" id="Maintain" name="Maintain" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Roof Access from other Buildings?</label>
+				<input type="text" id="roofAccess" name="roofAccess" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Ground Access from other Buildings?</label>
+				<input type="text" id="groundAccess" name="groundAccess" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Who is allowed to use Parking other than occupants?</label>
+				<input type="text" id="Occupants" name="Occupants" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Any Business or Commerical offices inside?</label>
+				<input type="text" id="BorC" name="BorC" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">How many points of entry?</label>
+				<input type="text" id="pointEntry" name="pointEntry" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Any windows or opening at ground level?</label>
+				<input type="text" id="groundOpenings" name="groundOpenings" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Are Fire exits, alarms, and extinguishers clear of obstruction?</label>
+				<input type="text" id="Obstruction" name="Obstruction" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<label for="fname">Any Mosques in the Housing Area? (SUNNI / SHIA)</label>
+				<input type="text" id="Mosques" name="Mosques" required>
+				&nbsp-
+				<label for="Comments">Comments:</label>
+				<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>CONTINGENCY PLANNING</u></strong><br><br>
+
+				<strong>POLICE</strong>
+			
+					<label for="fname">Location of Police Station?</label>
+					<input type="text" id="policeStation" name="policeStation" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Distance to Police Station? (IN MILES)</label>
+					<input type="number" id="policeDistance" name="policeDistance" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Telephone #</label>
+					<input type="number" id="policeNumber" name="policeNumber" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Response Time?</label>
+					<input type="text" id="policeTime" name="policeTime" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<strong>FIRE</strong>
+
+					<label for="fname">Location of Fire Department?</label>
+					<input type="text" id="fireStation" name="fireStation" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Distance to Fire Department? (IN MILES)</label>
+					<input type="number" id="fireDistance" name="fireDistance" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Telephone #</label>
+					<input type="number" id="fireNumber" name="fireNumber" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Response Time?</label>
+					<input type="text" id="fireTime" name="fireTime" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+				<strong>MEDICAL</strong>
+
+					<label for="fname">Location of Nearest Hospital?</label>
+					<input type="text" id="Hospital" name="Hospital" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Distance to nearest Hosipital? (IN MILES)</label>
+					<input type="number" id="hospitalDistance" name="hospitalDistance" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Telephone #</label>
+					<input type="number" id="hospitalNumber" name="hospitalNumber" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+					<label for="fname">Response Time?</label>
+					<input type="text" id="hospitalTime" name="hospitalTime" required>
+					&nbsp-
+					<label for="Comments">Comments:</label>
+					<input type="text" id="BNComments" name="BNComments"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>POSITIVE / NEGATIVE ASPECTS</u></strong><br><br>
+
+				<label for="PositiveandNegative">Comments:</label>
+				<input type="text" id="PositiveandNegative" name="PositiveandNegative"><br><br>
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+
+			<strong><u>ANNUAL ASSESSMENT</u></strong><br>
+			
+			<strong><u>RESIDENTIAL SECURITY OFFICE COMMENTS</u></strong><br><br>
+
+				<label for="residentalSecurity">Comments:</label>
+				<input type="text" id="residentalSecurity" name="residentalSecurity"><br><br>
+
+			<label for="ai">Miscellaneous Information:</label><br>
+			<input type="text" id="ai" value="Enter Here" name="ai" size="100"><br><br>
+
+			<input type="submit" value="Submit Form"><br><br>
+		<br>
+		</div>
+	</form>
+
+	<!--This will implement the required interactions for a visually smoother experience-->
+	<script src="./Assessment_Form/form.js" type="text/javascript"></script>
 
 </body>
-
 </html>
