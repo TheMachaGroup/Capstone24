@@ -1,38 +1,48 @@
 <?php
 ob_start();
-function validate($data) {
-    return htmlspecialchars(stripslashes(trim($data)));
-}
 
-try {
-    $conn = mysqli_init();
-    mysqli_real_connect($conn, "usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
-}
-catch (Exception $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-// Get user input from the form
-$Username = validate($_POST['Username']);
-$Password = validate($_POST['Password']);
-
-$sql = "SELECT * FROM users WHERE Username='$Username' AND UserPassword='$Password'";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        if ($row['Username'] === $Username && $row['UserPassword'] === $Password) {
-            header("Location: https://usarcent.azurewebsites.net/home_page/home_page.php");
-            exit();
-    } else {
-        echo "Invalid credentials";
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-} else {
-    echo "Query failed: " . mysqli_error($conn);
+
+    // Get user input from the form
+    $Username = $_POST['Username'];
+    $Password = $_POST['UserPassword'];
+
+    // Example query to retrieve the user role based on the username and password
+    $query = "SELECT Role FROM users WHERE Username = ? AND UserPassword = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ss', $Username, $Password);
+    $stmt->execute();
+    $stmt->bind_result($Role);
+
+    // Check if the user exists and get their role
+    if ($stmt->fetch()) {
+        // Redirect the user based on their role
+        switch ($Role) {
+            case 'ADMIN':
+                header("Location: https://usarcent.azurewebsites.net/home_page/admin_home.html");
+                exit();
+            case 'ANALYST':
+                header("Location: https://usarcent.azurewebsites.net/home_page/analyst_home.html");
+                exit();
+            // Add more cases for other roles if needed
+            default:
+                echo "Welcome! You have a default role.";
+                break;
+        }
+    } else {
+        // User authentication failed, handle accordingly (e.g., redirect to login page)
+        echo "Authentication failed. Please check your credentials.";
+    }
+
+    // Close the database connection
+    $stmt->close();
+    $conn->close();
 }
 
-// Close the database connection
-$conn->close();
 ob_end_flush();
 ?>
