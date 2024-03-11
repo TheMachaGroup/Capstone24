@@ -13,38 +13,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Password = $_POST['UserPassword'];
 
     // Example query to retrieve the user role based on the username and password
-    $query = "SELECT Role FROM users WHERE Username = ? AND UserPassword = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('ss', $Username, $Password);
-    $stmt->execute();
-    $stmt->bind_result($Role);
+    $query = "SELECT Role FROM users WHERE Username = '$Username' AND UserPassword = '$Password'";
+    $result = $conn->query($query);
 
-    // Check if the user exists and get their role
-    if ($stmt->fetch()) {
-        //check to see if role is being read. 
-         echo "Role: " . $Role;
-        exit();
-        // delete this section above after testing 
-        // Redirect the user based on their role
-        switch ($Role) {
-            case 'ADMIN':
-                header("Location: https://usarcent.azurewebsites.net/home_page/admin_home.html");
-                exit();
-            case 'ANALYST':
-                header("Location: https://usarcent.azurewebsites.net/home_page/analyst_home.html");
-                exit();
-            // Add more cases for other roles if needed
-            default:
-                echo "Welcome! You have a default role.";
-                break;
+    if ($result) {
+        // Check if the user exists and get their role
+        if ($row = $result->fetch_assoc()) {
+            // Redirect the user based on their role
+            switch ($row['Role']) {
+                case 'ADMIN':
+                    header("Location: https://usarcent.azurewebsites.net/home_page/admin_home.html");
+                    exit();
+                case 'ANALYST':
+                    header("Location: https://usarcent.azurewebsites.net/home_page/analyst_home.html");
+                    exit();
+                // Add more cases for other roles if needed
+                default:
+                    echo "Welcome! You have a default role.";
+                    break;
+            }
+        } else {
+            // User authentication failed, handle accordingly (e.g., redirect to login page)
+            echo "Authentication failed. Please check your credentials.";
         }
     } else {
-        // User authentication failed, handle accordingly (e.g., redirect to login page)
-        echo "Authentication failed. Please check your credentials.";
+        // Handle query error
+        echo "Query failed: " . $conn->error;
     }
 
     // Close the database connection
-    $stmt->close();
     $conn->close();
 }
 
