@@ -1,3 +1,4 @@
+//This code is no longer being used. It was merged with the login page for efficiency" 
 <?php
 ob_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
