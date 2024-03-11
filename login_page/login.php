@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Get user input from the form
     $Username = $_POST['Username'];
-    $Password = $_POST['UserPassword'];
+    $Password = $_POST['Password'];
 
     // Example query to retrieve the user role based on the username and password
     $query = "SELECT * FROM users WHERE Username = '$Username' AND UserPassword = '$Password'";
