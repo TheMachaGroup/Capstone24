@@ -22,10 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Redirect the user based on their role
         switch ($Role) {
             case 'ADMIN':
-                header("Location: https://usarcent.azurewebsites.net/admin_home.html");
+                header("Location: https://usarcent.azurewebsites.net/home_page/admin_home.html");
                 exit();
             case 'ANALYST':
-                header("Location: https://usarcent.azurewebsites.net/analyst_home.html");
+                header("Location: https://usarcent.azurewebsites.net/home_page/analyst_home.html");
                 exit();
             // Add more cases for other roles if needed
             default:
