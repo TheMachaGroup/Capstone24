@@ -20,7 +20,7 @@ if ($result === false) {
 } else {
     // Fetch and display the data
     while ($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["UserID"] . " - Name: " . $row["Username"] .$row["Role"] "<br>";
+        echo "ID: " . $row["UserID"] . " - Name: " . $row["Username"] . "<br>";
     }
 }
     
