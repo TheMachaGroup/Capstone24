@@ -58,3 +58,6 @@
           
 </body>
 </html>
+
+$stmt->close();
+$conn->close();
