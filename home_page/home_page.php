@@ -1,3 +1,14 @@
+<?php 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+	if ($stmt->fetch()) {
+    // Start output buffering to capture HTML content
+    ob_start();
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,5 +70,19 @@
 </body>
 </html>
 
+<?php
+
+    // Get the generated HTML content and turn off output buffering
+    $pageContent = ob_get_clean();
+
+    // Output the final HTML content
+    echo $pageContent;
+} else {
+    // User authentication failed, handle accordingly (e.g., redirect to login page)
+    echo "Authentication failed. Please check your credentials.";
+}
+
+		
 $stmt->close();
 $conn->close();
+?>
