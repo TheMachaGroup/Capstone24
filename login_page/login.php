@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Password = $_POST['UserPassword'];
 
     // Example query to retrieve the user role based on the username and password
-    $query = "SELECT Role FROM users WHERE Username = ? AND UserPassword = ?";
+    $query = "SELECT Role FROM users WHERE Username = '$Username' AND UserPassword = '$Password'";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ss', $Username, $Password);
     $stmt->execute();
