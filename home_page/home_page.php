@@ -11,7 +11,8 @@
 <body>
     <nav id="nav-bar">
 		<ul id="nav-bar-list">
-			<li id="id-container"><img src="../img/logo.png" id="logo"><span id="logo_text">Create Account</span><img src="../img/icons/three-line.svg" id="collapse" class="collapse-style"></li><br>
+			<li id="id-container"><img src="../img/logo.png" id="logo"><span id="logo_text">HOME</span><img src="../img/icons/three-line.svg" id="collapse" class="collapse-style"></li><br>
+			<li><img src="img/icons/home.svg" class="icon"><a href="home_page/home_page.html">HOME</a></li>
 			<li id="user"><img src="../img/icons/person.svg" class="icon"><span id="user-name">User Name</span></li>
 			<li><img src="img/icons/home.svg" class="icon"><a href="form.html">New Assessment</a></li>
 			<li><img src="img/icons/folder.svg" class="icon"><a href="manage_report/manage_report.html">Report Manager</a></li>
