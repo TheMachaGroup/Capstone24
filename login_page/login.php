@@ -21,6 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if the user exists and get their role
     if ($stmt->fetch()) {
+        //check to see if role is being read. 
+         echo "Role: " . $Role;
+        exit();
+        // delete this section above after testing 
         // Redirect the user based on their role
         switch ($Role) {
             case 'ADMIN':
