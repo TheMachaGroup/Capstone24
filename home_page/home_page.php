@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-ob_start();
     // Retrieve the user's role from the database based on their login credentials
     $Username = $_POST['Username'];
     $Password = $_POST['UserPassword'];
@@ -40,5 +39,4 @@ ob_start();
     // Close the database connection
     $stmt->close();
     $conn->close();
-ob_end_flush();
 ?>
