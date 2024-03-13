@@ -8,40 +8,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-    // Retrieve form data
-$reportName = $_POST['HousingAssessment'];
-$reportdate = $_POST['reportdate'];
-$buildingName = $_POST['fname'];
-$gpsLocation = $_POST['gps'];
-
-// Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
-
-if ($conn->query($sqlLocation) === TRUE) {
-    // Retrieve the ID of the last inserted record
-    $locationId = $conn->insert_id;
-
-    // Insert data into GeographicLocation table
-    $sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
-
-    if ($conn->query($sqlGeo) === TRUE) {
-        // Retrieve the ID of the last inserted record
-        $geoLocationId = $conn->insert_id;
-
-        // Insert data into Form table with reference to GeographicLocation and locationdetails tables
-        $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
-
-        if ($conn->query($sqlForm) === TRUE) {
-            echo "Record inserted successfully";
-        } else {
-            echo "Error inserting record into Form table: " . $conn->error;
-        }
+   // Retrieve form data
+    $nObstructions = $_GET['nObstructions'];
+    $sObstructions = $_GET['sObstructions'];
+    $eObstructions = $_GET['eObstructions'];
+    $wObstructions = $_GET['wObstructions'];
+    $BNComments = $_GET['BNComments'];
+    
+    // Prepare and execute SQL statement to insert data into the database
+    $stmt = $pdo->prepare("INSERT INTO standoff_information (nObstructions, sObstructions, eObstructions, wObstructions, BNComments) VALUES (:nObstructions, :sObstructions, :eObstructions, :wObstructions, :BNComments)");
+    $stmt->bindParam(':nObstructions', $nObstructions);
+    $stmt->bindParam(':sObstructions', $sObstructions);
+    $stmt->bindParam(':eObstructions', $eObstructions);
+    $stmt->bindParam(':wObstructions', $wObstructions);
+    $stmt->bindParam(':BNComments', $BNComments);
+    
+    // Check if the statement was executed successfully
+    if ($stmt->execute()) {
+        // Redirect to confirmation page
+        header("Location: Assessment_Form/confirmation.html");
+        exit();
     } else {
-        echo "Error inserting record into GeographicLocation table: " . $conn->error;
+        // If execution fails, handle the error (e.g., display an error message)
+        echo "Error: Unable to save data.";
     }
-} else {
-    echo "Error inserting record into locationdetails table: " . $conn->error;
-}
     // Close the connection
     $stmt->close();
     $conn->close();
