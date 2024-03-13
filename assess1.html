@@ -70,7 +70,7 @@ label {
         <h1 class="title">Create Report</h1>
     </div>
     <br>
-    <h3 id="status" style="text-align:center;"><u>HOUSING / OFFICE AREA INFORMATION</u></h3>
+    <h3 style="text-align:center;"><u>HOUSING / OFFICE AREA INFORMATION</u></h3>
 
     <form action="Assessment_Form/assess1_form.php" method="POST"> <!--This is the start of the form. It will uses asses1_form.php to push data to the database-->
 		<div class="Container">
@@ -105,10 +105,10 @@ label {
 function saveFormAndRedirect() {
 
     // Change the style of the h3 element to green
-    document.getElementById('status').style.color = 'green';
+    // document.getElementById('status').style.color = 'green'; <----- commenting this out for now, but it does work. Just add id="status" to whatever you want it to turn green after click
 
     // Redirect to Form.html
-    window.location.href = 'Form.html';
+    window.location.href = 'https://usarcent.azurewebsites.net/Form.html';
 }
 </script>
     <!--This will implement the required interactions for a visually smoother experience-->
