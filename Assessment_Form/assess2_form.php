@@ -9,42 +9,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
     // Retrieve form data
-$reportName = $_POST['HousingAssessment'];
-$reportdate = $_POST['reportdate'];
-$buildingName = $_POST['fname'];
-$gpsLocation = $_POST['gps'];
+    $address = $_GET['address'];
+    $city = $_GET['city'];
+    $state = $_GET['state'];
+    $zip = $_GET['zip'];
+    $country = $_GET['country'];
+    $comments = $_GET['BNComments'];
+    $phoneNumber = $_GET['phoneNumber'];
+    $numBuildings = $_GET['buildings'];
+    $numFloors = $_GET['floors'];
+    $unitType = $_GET['unitType'];
+    $spaceType = $_GET['spaceType'];
+    $groundClosed = $_GET['groundclosed'];
 
-// Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
+    // Insert data into respective tables
+    // Geographic Location Table
+    $sql_geo = "INSERT INTO GeographicLocation (GPS, Address, City, State, Zip, Country)
+                VALUES ('gps_value', '$address', '$city', '$state', '$zip', '$country')";
 
-if ($conn->query($sqlLocation) === TRUE) {
-    // Retrieve the ID of the last inserted record
-    $locationId = $conn->insert_id;
-
-    // Insert data into GeographicLocation table
-    $sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
-
-    if ($conn->query($sqlGeo) === TRUE) {
-        // Retrieve the ID of the last inserted record
-        $geoLocationId = $conn->insert_id;
-
-        // Insert data into Form table with reference to GeographicLocation and locationdetails tables
-        $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
-
-        if ($conn->query($sqlForm) === TRUE) {
-            echo "Record inserted successfully";
-        } else {
-            echo "Error inserting record into Form table: " . $conn->error;
-        }
+    if ($conn->query($sql_geo) === TRUE) {
+        $last_id = $conn->insert_id; // Get last inserted ID for foreign key reference
     } else {
-        echo "Error inserting record into GeographicLocation table: " . $conn->error;
+        echo "Error: " . $sql_geo . "<br>" . $conn->error;
     }
-} else {
-    echo "Error inserting record into locationdetails table: " . $conn->error;
-}
+
+    // Unit Requesting Assessment Table
+    $sql_unit = "INSERT INTO UnitRequestingAssessment (UserID, BuildingPhoneNumber)
+                 VALUES ('$last_id', '$phoneNumber')";
+
+    if ($conn->query($sql_unit) !== TRUE) {
+        echo "Error: " . $sql_unit . "<br>" . $conn->error;
+    }
+
+    // Residential Housing Gen Info Table
+    $sql_residential = "INSERT INTO ResidentialHousingGenInfo (RHAGIID, NumBuildings, NumFloors, UnitType, SpaceType, GroundClosed)
+                        VALUES ('$last_id', '$numBuildings', '$numFloors', '$unitType', '$spaceType', '$groundClosed')";
+
+    if ($conn->query($sql_residential) !== TRUE) {
+        echo "Error: " . $sql_residential . "<br>" . $conn->error;
+    }
     // Close the connection
     $stmt->close();
     $conn->close();
+
+    // Redirect to confirmation page
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit;
 }
 ob_end_flush();
 ?>
