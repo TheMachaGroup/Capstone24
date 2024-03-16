@@ -8,20 +8,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-    // Retrieve form data
-    $policeStation = $_POST['policeStation'];
-    $policeDistance = $_POST['policeDistance'];
-    $policeNumber = $_POST['policeNumber'];
-    $policeTime = $_POST['policeTime'];
-    $fireStation = $_POST['fireStation'];
-    $fireDistance = $_POST['fireDistance'];
-    $fireNumber = $_POST['fireNumber'];
-    $fireTime = $_POST['fireTime'];
-    $hospital = $_POST['Hospital'];
-    $hospitalDistance = $_POST['hospitalDistance'];
-    $hospitalNumber = $_POST['hospitalNumber'];
-    $hospitalTime = $_POST['hospitalTime'];
-    $BNComments = $_POST['BNComments'];
+   // Retrieve form data
+$nPoliceStation = $_POST['policeStation'];
+$nPoliceDistance = $_POST['policeDistance'];
+$nPoliceNumber = $_POST['policeNumber'];
+$nPoliceTime = $_POST['policeTime'];
+$nFireStation = $_POST['fireStation'];
+$nFireDistance = $_POST['fireDistance'];
+$nFireNumber = $_POST['fireNumber'];
+$nFireTime = $_POST['fireTime'];
+$nHospital = $_POST['Hospital'];
+$nHospitalDistance = $_POST['hospitalDistance'];
+$nHospitalNumber = $_POST['hospitalNumber'];
+$nHospitalTime = $_POST['hospitalTime'];
+$nBNComments = $_POST['BNComments'];
+
+// Prepare and execute SQL statement to insert data into the database
+$stmt = $pdo->prepare("INSERT INTO contingency_planning (PoliceStation, PoliceDistance, PoliceNumber, PoliceTime, FireStation, FireDistance, FireNumber, FireTime, Hospital, HospitalDistance, HospitalNumber, HospitalTime, BNComments) VALUES (:policeStation, :policeDistance, :policeNumber, :policeTime, :fireStation, :fireDistance, :fireNumber, :fireTime, :Hospital, :hospitalDistance, :hospitalNumber, :hospitalTime, :BNComments)");
+$stmt->bindParam(':policeStation', $nPoliceStation);
+$stmt->bindParam(':policeDistance', $nPoliceDistance);
+$stmt->bindParam(':policeNumber', $nPoliceNumber);
+$stmt->bindParam(':policeTime', $nPoliceTime);
+$stmt->bindParam(':fireStation', $nFireStation);
+$stmt->bindParam(':fireDistance', $nFireDistance);
+$stmt->bindParam(':fireNumber', $nFireNumber);
+$stmt->bindParam(':fireTime', $nFireTime);
+$stmt->bindParam(':Hospital', $nHospital);
+$stmt->bindParam(':hospitalDistance', $nHospitalDistance);
+$stmt->bindParam(':hospitalNumber', $nHospitalNumber);
+$stmt->bindParam(':hospitalTime', $nHospitalTime);
+$stmt->bindParam(':BNComments', $nBNComments);
+
+$stmt->execute();
+
 
     // Insert data into contingency_planning table
     $stmtContingency = $conn->prepare("INSERT INTO contingency_planning (PoliceStation, PoliceDistance, PoliceNumber, PoliceTime, FireStation, FireDistance, FireNumber, FireTime, Hospital, HospitalDistance, HospitalNumber, HospitalTime, BNComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
