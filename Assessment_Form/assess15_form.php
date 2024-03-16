@@ -1,31 +1,28 @@
 <?php
 ob_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected to database<br>";
-
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Retrieve form data
-    $BNComments = $_POST['BNComments'];
-    $miscellaneousInfo = $_POST['ai'];
+    $BNComments = $_GET['BNComments'];
+    $miscellaneousInfo = $_GET['ai'];
 
+    // Connect to the database
+    $pdo = new PDO("mysql:host=usarcent-server.mysql.database.azure.com;dbname=usarcent-database", "thpgbqeide", "0LB5E265UCUE1D5E$");
+    
     // Prepare and execute SQL statement to insert data into the database
-    $stmt = $conn->prepare("INSERT INTO annual_assessment_security_office_comments (BNComments, MiscellaneousInfo) VALUES (?, ?)");
-    $stmt->bind_param("ss", $BNComments, $miscellaneousInfo);
+    $stmt = $pdo->prepare("INSERT INTO annual_assessment_comments (Comments, MiscellaneousInfo) VALUES (:BNComments, :miscellaneousInfo)");
+    $stmt->bindParam(':BNComments', $BNComments);
+    $stmt->bindParam(':miscellaneousInfo', $miscellaneousInfo);
 
     if ($stmt->execute()) {
         echo "Record inserted successfully";
     } else {
-        echo "Error inserting record: " . $conn->error;
+        echo "Error inserting record: " . $stmt->errorInfo()[2];
     }
 
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
+    // Close the connection
+    $pdo = null;
 }
 ob_end_flush();
 ?>
+
 
