@@ -20,16 +20,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pointEntry = $_POST['pointEntry'];
     $BNComments = $_POST['BNComments'];
 
-    // Insert data into standoff_information table
-    $sqlStandoff = "INSERT INTO standoff_information (nObstructions, sObstructions, eObstructions, wObstructions, BNComments) VALUES ('$maintain', '$roofAccess', '$groundAccess', '$occupants', '$borc', '$obstruction', '$mosques', '$groundOpenings', '$pointEntry', '$BNComments')";
+ if ($stmtStandoff->execute() === TRUE) {
+        echo "Data inserted into standoff_information successfully<br>";
 
-    if ($conn->query($sqlStandoff) === TRUE) {
-        echo "Record inserted successfully";
+        // Retrieve the ID of the last inserted record
+        $standoffId = $conn->insert_id;
+
+        // Insert data into Form table with reference to standoff_information table
+        $sqlForm = "INSERT INTO Form (StandoffID) VALUES ('$standoffId')";
+
+        if ($conn->query($sqlForm) === TRUE) {
+            echo "Record inserted successfully into Form table";
+        } else {
+            echo "Error inserting record into Form table: " . $conn->error;
+        }
     } else {
         echo "Error inserting record into standoff_information table: " . $conn->error;
     }
 
-    // Close the connection
+    // Close the statement and connection
+    $stmtStandoff->close();
     $conn->close();
 }
 ob_end_flush();
