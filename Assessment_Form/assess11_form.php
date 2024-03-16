@@ -1,33 +1,40 @@
 <?php
 ob_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $host = "usarcent-server.mysql.database.azure.com";
+    $username = "thpgbqeide";
+    $password = "0LB5E265UCUE1D5E$";
+    $database = "usarcent-database";
+    $port = 3306;
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$database;port=$port", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "Connected to database<br>";
+
+        // Retrieve form data
+        $subGuards = $_GET['subGuards'];
+        $military = $_GET['Military'];
+        $BNComments = $_GET['BNComments'];
+
+        // Prepare and execute SQL statement to insert data into the database
+        $stmt = $pdo->prepare("INSERT INTO SecurityManning (SubcontractedGuards, MilitarySecurityGuards, Comments) VALUES (:subGuards, :military, :BNComments)");
+        $stmt->bindParam(':subGuards', $subGuards);
+        $stmt->bindParam(':military', $military);
+        $stmt->bindParam(':BNComments', $BNComments);
+
+        if ($stmt->execute()) {
+            // Retrieve the ID of the last inserted record
+            $lastInsertedId = $pdo->lastInsertId();
+            echo "Record inserted successfully. Last inserted ID: " . $lastInsertedId;
+        } else {
+            echo "Error inserting record into SecurityManning table";
+        }
+    } catch (PDOException $e) {
+        die("Connection failed: " . $e->getMessage());
     }
-    echo "Connected to database<br>";
 
-      // Retrieve form data
-    $subcontractedGuards = $_POST['subGuards'];
-    $militarySecurityGuards = $_POST['Military'];
-    $comments = $_POST['BNComments'];
-
-    // Insert data into SecurityManning table
-    $sqlSecurityManning = "INSERT INTO SecurityManning (SubcontractedGuards, MilitarySecurityGuards, Comments) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sqlSecurityManning);
-    $stmt->bind_param("sss", $subcontractedGuards, $militarySecurityGuards, $comments);
-
-    if ($stmt->execute()) {
-        echo "Record inserted successfully";
-    } else {
-        echo "Error inserting record into SecurityManning table: " . $stmt->error;
-    }
-
-  
-   // Close the connection
-    $stmt->close();
-    $conn->close();
+    $pdo = null; // Close connection
 }
 ob_end_flush();
 ?>
