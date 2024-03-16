@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Error inserting record into PerimeterSecurity table: " . $stmt->error;
     }
-    // Close connection
+    //Close connection
+      $stmt->close();
     $conn->close();
 }
 ob_end_flush();
