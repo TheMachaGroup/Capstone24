@@ -8,40 +8,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-    // Retrieve form data
-$reportName = $_POST['HousingAssessment'];
-$reportdate = $_POST['reportdate'];
-$buildingName = $_POST['fname'];
-$gpsLocation = $_POST['gps'];
+// Retrieve form data
+    $monitored_outside = $_GET["monitored_outside"];
+    $entry_controlled = $_GET["entry_controlled"];
+    $comments = $_GET["BNComments"];
 
-// Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
+    // Insert data into the database
+    $stmt = $pdo->prepare("INSERT INTO entryandcirculationtable (vehiclesmonitored, entrycontrolled) VALUES (?, ?)");
+    $stmt->execute([$monitored_outside, $entry_controlled]);
 
-if ($conn->query($sqlLocation) === TRUE) {
-    // Retrieve the ID of the last inserted record
-    $locationId = $conn->insert_id;
+    // Get the ID of the last inserted row
+    $entryandcircID = $pdo->lastInsertId();
 
-    // Insert data into GeographicLocation table
-    $sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
-
-    if ($conn->query($sqlGeo) === TRUE) {
-        // Retrieve the ID of the last inserted record
-        $geoLocationId = $conn->insert_id;
-
-        // Insert data into Form table with reference to GeographicLocation and locationdetails tables
-        $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
+    // Insert data into the form table
+    $stmt = $pdo->prepare("INSERT INTO form_table (entryandcircID, comments) VALUES (?, ?)");
+    $stmt->execute([$entryandcircID, $comments]);
 
         if ($conn->query($sqlForm) === TRUE) {
             echo "Record inserted successfully";
         } else {
-            echo "Error inserting record into Form table: " . $conn->error;
+            echo "Error inserting table: " . $conn->error;
         }
-    } else {
-        echo "Error inserting record into GeographicLocation table: " . $conn->error;
-    }
-} else {
-    echo "Error inserting record into locationdetails table: " . $conn->error;
-}
+   
     // Close the connection
     $stmt->close();
     $conn->close();
