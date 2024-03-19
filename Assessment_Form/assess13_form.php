@@ -9,16 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
    // Retrieve form data for police
-    $policeStation = $_GET['policeStation'];
-    $policeDistance = $_GET['policeDistance'];
-    $policeNumber = $_GET['policeNumber'];
-    $policeTime = $_GET['policeTime'];
+    $policeStation = $_POST['policeStation'];
+    $policeDistance = $_POST['policeDistance'];
+    $policeNumber = $_POST['policeNumber'];
+    $policeTime = $_POST['policeTime'];
 
     // Retrieve form data for fire
-    $fireStation = $_GET['fireStation'];
-    $fireDistance = $_GET['fireDistance'];
-    $fireNumber = $_GET['fireNumber'];
-    $fireTime = $_GET['fireTime'];
+    $fireStation = $_POST['fireStation'];
+    $fireDistance = $_POST['fireDistance'];
+    $fireNumber = $_POST['fireNumber'];
+    $fireTime = $_POST['fireTime'];
 
    
     // SQL query to insert data into policeforce table
