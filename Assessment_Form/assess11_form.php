@@ -8,15 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-   / // Retrieve form data
-    $perimeterBarriers = $_POST['PB'];
-    $perimeterLighting = $_POST['PL'];
-    $gatedEntrance = $_POST['GatedEntrance'];
-    $gateGuard = $_POST['GateGuard'];
+   // Retrieve form data
+    $subGuards = $_POST['subGuards'];
+    $military = $_POST['Military'];
     $comments = $_POST['BNComments'];
 
-    // SQL query to insert data into perimetersecurityinfo table
-    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard')";
+    // SQL query to insert data into securitymanninginfo table
+    $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard) VALUES ('$subGuards', '$military')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
