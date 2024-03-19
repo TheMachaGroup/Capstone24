@@ -1,40 +1,32 @@
 <?php
 ob_start();
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $host = "usarcent-server.mysql.database.azure.com";
-    $username = "thpgbqeide";
-    $password = "0LB5E265UCUE1D5E$";
-    $database = "usarcent-database";
-    $port = 3306;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$database;port=$port", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected to database<br>";
-
-        // Retrieve form data
-        $subGuards = $_GET['subGuards'];
-        $military = $_GET['Military'];
-        $BNComments = $_GET['BNComments'];
-
-        // Prepare and execute SQL statement to insert data into the database
-        $stmt = $pdo->prepare("INSERT INTO SecurityManning (SubcontractedGuards, MilitarySecurityGuards, Comments) VALUES (:subGuards, :military, :BNComments)");
-        $stmt->bindParam(':subGuards', $subGuards);
-        $stmt->bindParam(':military', $military);
-        $stmt->bindParam(':BNComments', $BNComments);
-
-        if ($stmt->execute()) {
-            // Retrieve the ID of the last inserted record
-            $lastInsertedId = $pdo->lastInsertId();
-            echo "Record inserted successfully. Last inserted ID: " . $lastInsertedId;
-        } else {
-            echo "Error inserting record into SecurityManning table";
-        }
-    } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
+    echo "Connected to database<br>";
 
-    $pdo = null; // Close connection
+   / // Retrieve form data
+    $perimeterBarriers = $_POST['PB'];
+    $perimeterLighting = $_POST['PL'];
+    $gatedEntrance = $_POST['GatedEntrance'];
+    $gateGuard = $_POST['GateGuard'];
+    $comments = $_POST['BNComments'];
+
+    // SQL query to insert data into perimetersecurityinfo table
+    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    
+    //Close connection
+      $stmt->close();
+    $conn->close();
 }
 ob_end_flush();
 ?>
