@@ -9,23 +9,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
     // Retrieve form data
-    $parkingArea = $_GET['ParkingArea'];
-    $parkSec = $_GET['ParkSec'];
-    $light = $_GET['Light'];
-    $pComments = $_GET['pComments'];
-    $bnComments = $_GET['BNComments'];
+    $parkingArea = $_POST['ParkingArea'];
+    $parkSec = $_POST['ParkSec'];
+    $light = $_POST['Light'];
+    $pComments = $_POST['pComments'];
+    $bnComments = $_POST['BNComments'];
 
     // Perform SQL insertion
     $sql = "INSERT INTO parkinginformation (LocationOfParking, SecurityForParking, Lighting, Comments)
             VALUES ('$parkingArea', '$parkSec', '$light', '$pComments')";
-        if ($conn->query($sqlForm) === TRUE) {
-            echo "Record inserted successfully";
-        } else {
-            echo "Error inserting into table: " . $conn->error;
-        }
+    if ($conn->query($sql) === TRUE) {
+        echo "Record inserted successfully";
+    } else {
+        echo "Error inserting into table: " . $conn->error;
+    }
   
     // Close the connection
-    $stmt->close();
     $conn->close();
 }
 ob_end_flush();
