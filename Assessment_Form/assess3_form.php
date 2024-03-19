@@ -9,29 +9,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
     // Retrieve form data
-    $totalRooms = $_GET['totalRooms'];
-    $totalPeople = $_GET['totalPeople'];
-    $occupancyComments = $_GET['occupancyComments'];
-    $BNComments = $_GET['BNComments'];
+    $totalRooms = $_POST['totalRooms'];
+    $totalPeople = $_POST['totalPeople'];
+    $occupancyComments = $_POST['occupancyComments'];
+    $BNComments = $_POST['BNComments'];
     
     // Prepare and execute SQL statement to insert data into the database
-    $stmt = $pdo->prepare("INSERT INTO occupancyinformation (totalRooms, totalPeople, occupancyComments, BNComments) VALUES (:totalRooms, :totalPeople, :occupancyComments, :BNComments)");
-    $stmt->bindParam(':totalRooms', $totalRooms);
-    $stmt->bindParam(':totalPeople', $totalPeople);
-    $stmt->bindParam(':occupancyComments', $occupancyComments);
-    $stmt->bindParam(':BNComments', $BNComments);
+    $sql = "INSERT INTO occupancyinformation (totalRooms, totalPeople, occupancyComments, BNComments) VALUES ('$totalRooms', '$totalPeople', '$occupancyComments', '$BNComments')";
     
     // Check if the statement was executed successfully
-    if ($stmt->execute()) {
+    if ($conn->query($sql) === TRUE) {
         // Redirect to confirmation page
         header("Location: confirmation.html");
         exit();
     } else {
         // If execution fails, handle the error (e.g., display an error message)
-        echo "Error: Unable to save data.";
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
     // Close the connection
-    $stmt->close();
     $conn->close();
 }
 ob_end_flush();
