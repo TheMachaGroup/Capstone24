@@ -9,28 +9,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
     // Retrieve form data
-    $surrounding_population = $_GET["SP"];
-    $crime_violence_history = $_GET["Crime"];
-    $comments = $_GET["BNComments"];
+    $surrounding_population = $_POST["SP"];
+    $crime_violence_history = $_POST["Crime"];
+    $comments = $_POST["BNComments"];
 
     // Insert data into the demographicsinfo table
-    $stmt = $pdo->prepare("INSERT INTO demographicsinfo (SurroundingPop, CrimeViolenceHistory) VALUES (?, ?)");
-    $stmt->execute([$surrounding_population, $crime_violence_history]);
+    $sql = "INSERT INTO demographicsinfo (SurroundingPop, CrimeViolenceHistory) VALUES ('$surrounding_population', '$crime_violence_history')";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record inserted successfully<br>";
+    } else {
+        echo "Error inserting record into demographicsinfo table: " . $conn->error;
+    }
 
     // Get the demographicsinfo primary key
-    $demographicsID = $pdo->lastInsertId();
+    $demographicsID = $conn->insert_id;
 
     // Insert data into the form table with the foreign key reference
-    $stmt = $pdo->prepare("INSERT INTO form_table (demographicsID, comments) VALUES (?, ?)");
-    $stmt->execute([$demographicsID, $comments]);
-        if ($conn->query($sqlForm) === TRUE) {
-            echo "Record inserted successfully";
-        } else {
-            echo "Error inserting record into table: " . $conn->error;
-        }
-  
+    $sql = "INSERT INTO form_table (demographicsID, comments) VALUES ('$demographicsID', '$comments')";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record inserted successfully<br>";
+    } else {
+        echo "Error inserting record into form_table: " . $conn->error;
+    }
+
     // Close the connection
-    $stmt->close();
     $conn->close();
 }
 ob_end_flush();
