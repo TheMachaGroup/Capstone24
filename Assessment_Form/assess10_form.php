@@ -8,22 +8,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-   // Retrieve form data
+   / // Retrieve form data
     $perimeterBarriers = $_POST['PB'];
     $perimeterLighting = $_POST['PL'];
     $gatedEntrance = $_POST['GatedEntrance'];
     $gateGuard = $_POST['GateGuard'];
     $comments = $_POST['BNComments'];
 
-    // Insert data into PerimeterSecurity table
-    $sqlPerimeterSecurity = "INSERT INTO PerimeterSecurity (PerimeterBarriers, PerimeterLighting, GatedEntrance, GateGuard, Comments) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sqlPerimeterSecurity);
-    $stmt->bind_param("sssss", $perimeterBarriers, $perimeterLighting, $gatedEntrance, $gateGuard, $comments);
+    // SQL query to insert data into perimetersecurityinfo table
+    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard')";
 
-    if ($stmt->execute()) {
-        echo "Record inserted successfully";
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
     } else {
-        echo "Error inserting record into PerimeterSecurity table: " . $stmt->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
     //Close connection
       $stmt->close();
