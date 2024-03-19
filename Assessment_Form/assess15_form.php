@@ -1,28 +1,29 @@
 <?php
 ob_start();
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Retrieve form data
-    $BNComments = $_GET['BNComments'];
-    $miscellaneousInfo = $_GET['ai'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-    // Connect to the database
-    $pdo = new PDO("mysql:host=usarcent-server.mysql.database.azure.com;dbname=usarcent-database", "thpgbqeide", "0LB5E265UCUE1D5E$");
-    
-    // Prepare and execute SQL statement to insert data into the database
-    $stmt = $pdo->prepare("INSERT INTO annual_assessment_comments (Comments, MiscellaneousInfo) VALUES (:BNComments, :miscellaneousInfo)");
-    $stmt->bindParam(':BNComments', $BNComments);
-    $stmt->bindParam(':miscellaneousInfo', $miscellaneousInfo);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    echo "Connected to database<br>";
+ // Retrieve form data
+    $rsoComments = $_POST['RSO'];
+    $miscellaneousInfo = $_POST['ai'];
+    $bnComments = $_POST['BNComments'];
 
-    if ($stmt->execute()) {
-        echo "Record inserted successfully";
+    // Prepare SQL statement to insert data into annualassessment table
+    $sql = "INSERT INTO annualassessment (RSOComments, MiscellaneousInfo, BNComments) VALUES ('$rsoComments', '$miscellaneousInfo', '$bnComments')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
     } else {
-        echo "Error inserting record: " . $stmt->errorInfo()[2];
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    // Close the connection
-    $pdo = null;
+    // Close the statement and connection
+    $stmt->close();
+    $conn->close();
 }
 ob_end_flush();
 ?>
-
-
