@@ -8,40 +8,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-    // Retrieve form data
-$reportName = $_POST['HousingAssessment'];
-$reportdate = $_POST['reportdate'];
-$buildingName = $_POST['fname'];
-$gpsLocation = $_POST['gps'];
+   // Retrieve form data
+    $is_access_secure = $_GET["WSS"];
+    $locked_container_structure = $_GET["LockedWSS"];
+    $comments = $_GET["BNComments"];
 
-// Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
+    // Insert data into the waterstoragesystem table
+    $stmt = $pdo->prepare("INSERT INTO waterstoragesystem (securedaccess, lockedcontainer) VALUES (?, ?)");
+    $stmt->execute([$is_access_secure, $locked_container_structure]);
 
-if ($conn->query($sqlLocation) === TRUE) {
-    // Retrieve the ID of the last inserted record
-    $locationId = $conn->insert_id;
+    // Get the waterstoragesystem primary key
+    $waterstoragesystem_id = $pdo->lastInsertId();
 
-    // Insert data into GeographicLocation table
-    $sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
-
-    if ($conn->query($sqlGeo) === TRUE) {
-        // Retrieve the ID of the last inserted record
-        $geoLocationId = $conn->insert_id;
-
-        // Insert data into Form table with reference to GeographicLocation and locationdetails tables
-        $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
-
+    // Insert data into the form table with the foreign key reference
+    $stmt = $pdo->prepare("INSERT INTO form_table (waterstoragesystem, comments) VALUES (?, ?)");
+    $stmt->execute([$waterstoragesystem_id, $comments]);
         if ($conn->query($sqlForm) === TRUE) {
             echo "Record inserted successfully";
         } else {
-            echo "Error inserting record into Form table: " . $conn->error;
+            echo "Error inserting record into table: " . $conn->error;
         }
-    } else {
-        echo "Error inserting record into GeographicLocation table: " . $conn->error;
-    }
-} else {
-    echo "Error inserting record into locationdetails table: " . $conn->error;
-}
+    
     // Close the connection
     $stmt->close();
     $conn->close();
