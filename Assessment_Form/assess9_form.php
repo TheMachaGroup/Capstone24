@@ -8,25 +8,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-   // Retrieve form data
+   <?php
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
     $complexDistance = $_POST['ComplexDistance'];
     $reinforced = $_POST['Reinforced'];
     $shield = $_POST['Shield'];
     $reStairwell = $_POST['ReStairwell'];
     $comments = $_POST['BNComments'];
 
-   // Insert data into respective tables
-    $sql1 = "INSERT INTO ParkingDistance (Distance) VALUES ('$complexDistance')";
-    $sql2 = "INSERT INTO Reinforcement (BasementOrParkingArea) VALUES ('$reinforced')";
-    $sql3 = "INSERT INTO EvacuationSite (SiteLocation) VALUES ('$shield')";
-    $sql4 = "INSERT INTO Stairwell (Description) VALUES ('$reStairwell')";
-    $sql5 = "INSERT INTO Comments (Comment) VALUES ('$comments')";
 
-   // Execute queries
-    if ($conn->query($sql1) === TRUE && $conn->query($sql2) === TRUE && $conn->query($sql3) === TRUE && $conn->query($sql4) === TRUE && $conn->query($sql5) === TRUE) {
-        echo "Data inserted successfully";
+    // SQL query to insert data into rallypointsinfo table
+    $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
     } else {
-        echo "Error: " . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
   
