@@ -9,22 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
    // Retrieve form data
-    $nObstructions = $_GET['nObstructions'];
-    $sObstructions = $_GET['sObstructions'];
-    $eObstructions = $_GET['eObstructions'];
-    $wObstructions = $_GET['wObstructions'];
-    $BNComments = $_GET['BNComments'];
+    $nObstructions = $_POST['nObstructions'];
+    $sObstructions = $_POST['sObstructions'];
+    $eObstructions = $_POST['eObstructions'];
+    $wObstructions = $_POST['wObstructions'];
+    $BNComments = $_POST['BNComments'];
     
     // Prepare and execute SQL statement to insert data into the database
-    $stmt = $pdo->prepare("INSERT INTO standoff_information (nObstructions, sObstructions, eObstructions, wObstructions, BNComments) VALUES (:nObstructions, :sObstructions, :eObstructions, :wObstructions, :BNComments)");
-    $stmt->bindParam(':nObstructions', $nObstructions);
-    $stmt->bindParam(':sObstructions', $sObstructions);
-    $stmt->bindParam(':eObstructions', $eObstructions);
-    $stmt->bindParam(':wObstructions', $wObstructions);
-    $stmt->bindParam(':BNComments', $BNComments);
+    $sql = "INSERT INTO standoff_information (nObstructions, sObstructions, eObstructions, wObstructions, BNComments) VALUES ('$nObstructions', '$sObstructions', '$eObstructions', '$wObstructions', '$BNComments')";
     
     // Check if the statement was executed successfully
-    if ($stmt->execute()) {
+    if ($conn->query($sql) === TRUE) {
         // Redirect to confirmation page
         header("Location: Assessment_Form/confirmation.html");
         exit();
@@ -33,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Error: Unable to save data.";
     }
     // Close the connection
-    $stmt->close();
     $conn->close();
 }
 ob_end_flush();
