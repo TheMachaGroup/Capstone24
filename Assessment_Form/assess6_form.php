@@ -8,30 +8,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-// Retrieve form data
-    $monitored_outside = $_GET["monitored_outside"];
-    $entry_controlled = $_GET["entry_controlled"];
-    $comments = $_GET["BNComments"];
+    // Retrieve form data
+    $monitored_outside = $_POST["monitored_outside"];
+    $entry_controlled = $_POST["entry_controlled"];
+    $comments = $_POST["BNComments"];
 
     // Insert data into the database
-    $stmt = $pdo->prepare("INSERT INTO entryandcirculationtable (vehiclesmonitored, entrycontrolled) VALUES (?, ?)");
-    $stmt->execute([$monitored_outside, $entry_controlled]);
+    $sql = "INSERT INTO entryandcirculationtable (vehiclesmonitored, entrycontrolled) VALUES ('$monitored_outside', '$entry_controlled')";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record inserted successfully<br>";
+    } else {
+        echo "Error inserting into entryandcirculationtable: " . $conn->error;
+    }
 
     // Get the ID of the last inserted row
-    $entryandcircID = $pdo->lastInsertId();
+    $entryandcircID = $conn->insert_id;
 
     // Insert data into the form table
-    $stmt = $pdo->prepare("INSERT INTO form_table (entryandcircID, comments) VALUES (?, ?)");
-    $stmt->execute([$entryandcircID, $comments]);
+    $sql = "INSERT INTO form_table (entryandcircID, comments) VALUES ('$entryandcircID', '$comments')";
+    if ($conn->query($sql) === TRUE) {
+        echo "Record inserted successfully<br>";
+    } else {
+        echo "Error inserting into form_table: " . $conn->error;
+    }
 
-        if ($conn->query($sqlForm) === TRUE) {
-            echo "Record inserted successfully";
-        } else {
-            echo "Error inserting table: " . $conn->error;
-        }
-   
     // Close the connection
-    $stmt->close();
     $conn->close();
 }
 ob_end_flush();
