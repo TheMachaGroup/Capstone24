@@ -68,7 +68,7 @@ label {
     <br>
     <h3 style="text-align:center;"><u>PARKING</u></h3>
 
-    <form action="Assessment_Form/assess5_form.php" method="GET"> <!--This is the start of the form. It will later use the information in form.php to push data to the database-->
+    <form action="Assessment_Form/assess5_form.php" method="POST"> <!--This is the start of the form. It will later use the information in form.php to push data to the database-->
 		<div class="Container">
             <div class="housing">
                 <div>
@@ -95,14 +95,24 @@ label {
 </form>
 
 <script>
-function saveFormAndRedirect() {
-
-    // Change the style of the h3 element to green
-    // document.getElementById('status').style.color = 'green'; <----- commenting this out for now, but it does work. Just add id="status" to whatever you want it to turn green after click
-
-    // Redirect to Form.html
-    window.location.href = 'https://usarcent.azurewebsites.net/Form.html';
-}
+	function saveFormAndRedirect() {
+		//save in local storage that this form has been submitted
+		var frmProgressData = localStorage.getItem('formsCompleted');
+		var frmProgressArray = [];
+		if (frmProgressData && Array.isArray(JSON.parse(frmProgressData))) {
+		    frmProgressArray = JSON.parse(frmProgressData);
+		}
+		var formID = 5; // Change this to the value for each form
+		if (!frmProgressArray.includes(formID)) {
+		    frmProgressArray.push(formID);
+		    localStorage.setItem('formsCompleted', JSON.stringify(frmProgressArray));
+		}
+	    // Change the style of the h3 element to green
+	    document.getElementById('status').style.color = 'green';
+	    
+	    // Redirect to Form.html
+	    window.location.href = 'Form.html';
+	}
 </script>
 
     <!--This will implement the required interactions for a visually smoother experience-->
