@@ -209,9 +209,23 @@
         }
 
         function submitForm() {
-            // Implement logic to submit the form
-            console.log('Form submitted');
+    fetch('Assessment_Form/allforms.php', { // Specify the URL of your PHP file
+        method: 'POST', // Use POST method
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        return response.text();
+    })
+    .then(data => {
+        console.log('form submitted'); // Log the response from the server
+        // Optionally, you can perform any additional actions here
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
     </script>
     <!-- End of messing with the code-->
     <!--This will implement the required interactions for a visually smoother experience-->
