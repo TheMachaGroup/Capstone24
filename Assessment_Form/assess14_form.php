@@ -9,18 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
     // Retrieve form data
-    $BNComments = $_POST['BNComments'];
+    $positiveAspects = $_POST['PosComments'];
+    $negativeAspects = $_POST['NegComments'];
 
-    // Prepare and execute SQL statement to insert data into the database
-    $stmt = $conn->prepare("INSERT INTO positive_negative_aspects (BNComments) VALUES (?)");
-    $stmt->bind_param("s", $BNComments);
+    // Prepare SQL statement to insert data into PositiveNegative table
+    $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects) VALUES ('$positiveAspects', '$negativeAspects')";
 
-    if ($stmt->execute()) {
-        echo "Record inserted successfully";
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
     } else {
-        echo "Error inserting record: " . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
     // Close the statement and connection
     $stmt->close();
     $conn->close();
