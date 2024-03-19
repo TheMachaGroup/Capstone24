@@ -8,19 +8,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "Connected to database<br>";
 
-    // Retrieve form data
-    $address = $_GET['address'];
-    $city = $_GET['city'];
-    $state = $_GET['state'];
-    $zip = $_GET['zip'];
-    $country = $_GET['country'];
-    $comments = $_GET['BNComments'];
-    $phoneNumber = $_GET['phoneNumber'];
-    $numBuildings = $_GET['buildings'];
-    $numFloors = $_GET['floors'];
-    $unitType = $_GET['unitType'];
-    $spaceType = $_GET['spaceType'];
-    $groundClosed = $_GET['groundclosed'];
+   // Retrieve form data
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    $zip = $_POST['zip'];
+    $country = $_POST['country'];
+    $comments = $_POST['BNComments'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $numBuildings = $_POST['buildings'];
+    $numFloors = $_POST['floors'];
+    $unitType = $_POST['unitType'];
+    $spaceType = $_POST['spaceType'];
+    $groundClosed = $_POST['groundclosed'];
 
     // Insert data into respective tables
     // Geographic Location Table
