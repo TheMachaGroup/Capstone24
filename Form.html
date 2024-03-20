@@ -202,55 +202,14 @@
     <button class="submit-button" onclick="submitForm()">Submit</button>
 
     <script>
-        // JavaScript functions for handling tile clicks and form submission
-        function goToPage(pageName) {
-            // Implement logic to navigate to the respective page based on the pageName
-            console.log(`Navigating to ${pageName} page`);
-        }
-
         function submitForm() {
-    fetch('Assessment_Form/allforms.php', { // Specify the URL of your PHP file
-        method: 'POST', // Use POST method
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.text();
-    })
-    .then(data => {
-        console.log('form submitted'); // Log the response from the server
-        // Optionally, you can perform any additional actions here
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
-}
+    fetch('Form.html')
+   
     </script>
     <!-- End of messing with the code-->
     <!--This will implement the required interactions for a visually smoother experience-->
     <script src="./Assessment_Form/form.js" type="text/javascript"></script>
 
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var formsCompleted = JSON.parse(localStorage.getItem('formsCompleted')) || [];
-        console.log(formsCompleted);
-        var tiles = document.querySelectorAll('.tile');
-        tiles.forEach(function(tile) {
-            var formId = tile.dataset.formid;
-            var icon = tile.querySelector('.icon');
-			
-            if (icon) {
-                if (formsCompleted.includes(parseInt(formId))) {
-	                icon.style.backgroundColor = 'green';
-                    icon.innerHTML = '&#10003;'; // Green check icon
-                } else {
-                    icon.innerHTML = '&#10060;'; // Red cross icon
-                    icon.style.backgroundColor = 'red';
-                }
-            }
-        });
-    });
-</script>
+
 </html>
