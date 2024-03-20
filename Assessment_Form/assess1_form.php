@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    echo "Connected to database<br>";
+    echo "Connected to database";
 
     // Retrieve form data
     $reportName = $_POST['HousingAssessment'];
