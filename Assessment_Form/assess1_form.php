@@ -1,5 +1,4 @@
 <?php
-ob_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
@@ -9,5 +8,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database";
 
 
-ob_end_flush();
+
 ?>
