@@ -9,41 +9,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Connected to database<br>";
 
     // Retrieve form data
-$reportName = $_POST['HousingAssessment'];
-$reportdate = $_POST['reportdate'];
-$buildingName = $_POST['fname'];
-$gpsLocation = $_POST['gps'];
+    $reportName = $_POST['HousingAssessment'];
+    $reportdate = $_POST['reportdate'];
+    $buildingName = $_POST['fname'];
+    $gpsLocation = $_POST['gps'];
 
-// Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
+    // Insert data into locationdetails table
+    $sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
 
-if ($conn->query($sqlLocation) === TRUE) {
-    // Retrieve the ID of the last inserted record
-    $locationId = $conn->insert_id;
-
-    // Insert data into GeographicLocation table
-    $sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
-
-    if ($conn->query($sqlGeo) === TRUE) {
+    if ($conn->query($sqlLocation) === TRUE) {
         // Retrieve the ID of the last inserted record
-        $geoLocationId = $conn->insert_id;
+        $locationId = $conn->insert_id;
 
-        // Insert data into Form table with reference to GeographicLocation and locationdetails tables
-        $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
+        // Insert data into GeographicLocation table
+        $sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
 
-        if ($conn->query($sqlForm) === TRUE) {
-            echo "Record inserted successfully";
+        if ($conn->query($sqlGeo) === TRUE) {
+            // Retrieve the ID of the last inserted record
+            $geoLocationId = $conn->insert_id;
+
+            // Insert data into Form table with reference to GeographicLocation and locationdetails tables
+            $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
+
+            if ($conn->query($sqlForm) === TRUE) {
+                echo "Record inserted successfully";
+                // Redirect to Form.html after successful insertion
+                header("Location: Form.html");
+                exit();
+            } else {
+                echo "Error inserting record into Form table: " . $conn->error;
+            }
         } else {
-            echo "Error inserting record into Form table: " . $conn->error;
+            echo "Error inserting record into GeographicLocation table: " . $conn->error;
         }
     } else {
-        echo "Error inserting record into GeographicLocation table: " . $conn->error;
+        echo "Error inserting record into locationdetails table: " . $conn->error;
     }
-} else {
-    echo "Error inserting record into locationdetails table: " . $conn->error;
-}
+
     // Close the connection
-    $stmt->close();
     $conn->close();
 }
 ob_end_flush();
