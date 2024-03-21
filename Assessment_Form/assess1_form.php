@@ -22,7 +22,7 @@ if ($conn->query($sqlLocation) === TRUE) {
 }
 
 // Insert data into GeographicLocation table
-$sqlGeo = "INSERT INTO geographiclocation (GeographicLocation) VALUES ('$gpsLocation')";
+$sqlGeo = "INSERT INTO GeographicLocation (GeographicLocation) VALUES ('$gpsLocation')";
 if ($conn->query($sqlGeo) === TRUE) {
     echo "Data inserted into GeographicLocation<br>";
 } else {
