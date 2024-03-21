@@ -6,19 +6,17 @@ $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide",
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data from POST request
     $numBuildings = $_POST['buildings'];
     $numFloors = $_POST['floors'];
     $totalRooms = $_POST['totalRooms'];
     $totalPeople = $_POST['totalPeople'];
     $occupancyComments = $_POST['occupancyComments'];
-    $BNComments = $_POST['BNComments'];
+    $BNComments = $_POST['BNComments3'];
 
     // Prepare and execute SQL statement to insert data into the database
     $sql = "INSERT INTO occupancyinformation (TotalBuildings, NumFloors, TotalAptInComp, TotalOccByPersonnel, Comments, BNComments)
-            VALUES ('buildings', 'floors', '$totalRooms', '$totalPeople', '$occupancyComments', '$BNComments')";
+            VALUES ('$numBuildings', '$numFloors', '$totalRooms', '$totalPeople', '$occupancyComments', '$BNComments')";
     if ($conn->query($sql) === TRUE) {
         echo "Successfully inserted into Occupancy information";
 }
