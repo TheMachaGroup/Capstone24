@@ -10,8 +10,6 @@ if (!$conn) {
 // Retrieve form data
 $reportName = $_POST['HousingAssessment'];
 $reportdate = $_POST['reportdate'];
-$buildingName = $_POST['fname'];
-$gpsLocation = $_POST['gps'];
 
 // Insert data into locationdetails table
 $sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
@@ -19,14 +17,6 @@ if ($conn->query($sqlLocation) === TRUE) {
     echo "Data inserted in location details<br>";
 } else {
     echo "Error inserting record into locationdetails table: " . $conn->error . "<br>";
-}
-
-// Insert data into GeographicLocation table - this data inserts as a primary key so if someone enters data in the form and that data is already a primary key of the database it will not work. 
-$sqlGeo = "INSERT INTO geographiclocation (GeographicLocation) VALUES ('$gpsLocation')";
-if ($conn->query($sqlGeo) === TRUE) {
-    echo "Data inserted into GeographicLocation<br>";
-} else {
-    echo "Error inserting record into GeographicLocation table: " . $conn->error . "<br>";
 }
 
 
