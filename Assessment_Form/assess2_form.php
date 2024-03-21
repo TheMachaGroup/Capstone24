@@ -21,11 +21,12 @@ if (!$conn) {
     $spaceType = $_POST['spaceType'];
     $groundClosed = $_POST['groundclosed'];
     $gpsLocation = $_POST['gps'];
+    $buildingName = $_POST['fname'];
 
     // Insert data into respective tables
     // Geographic Location Table
-    $sql_geo = "INSERT INTO geographiclocation (GeographicLocation, GPSLocation, City, StateProvince, Zip, Country)
-                VALUES ('$gpsLocation', '$address', '$city', '$state', '$zip', '$country')";
+    $sql_geo = "INSERT INTO geographiclocation (GeographicLocation, GPSLocation, BuildingName, City, StateProvince, Zip, Country)
+                VALUES ('$gpsLocation', '$address', 'fname', '$city', '$state', '$zip', '$country')";
 
     if ($conn->query($sql_geo) === TRUE) {
         echo "Data inserted in geographiclocation<br>;
