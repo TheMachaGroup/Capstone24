@@ -19,11 +19,6 @@ if ($conn->query($sql) === TRUE) {
     echo "inserted successfully into table<br>";
 }
 
-    // Close the connection
-    $conn->close();
-}
-
-
 // Close the database connection when done
 mysqli_close($conn);
 ?>
