@@ -33,5 +33,7 @@ echo "data inserted into geographic location";
             // Insert data into Form table with reference to GeographicLocation and locationdetails tables
             $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
     echo "data inserted into form table"; 
-
+            
+// Close the database connection when done - testing to see if this works
+mysqli_close($conn);
 ?>
