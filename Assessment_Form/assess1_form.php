@@ -10,9 +10,11 @@ if (!$conn) {
 // Retrieve form data
 $reportName = $_POST['HousingAssessment'];
 $reportdate = $_POST['reportdate'];
+$phoneNumber = $_POST['phoneNumber'];
+$unitType = $_POST['unitType'];
 
 // Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
+$sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofResidence) VALUES ('$reportName', '$phoneNumber', '$unitType')";
 if ($conn->query($sqlLocation) === TRUE) {
     echo "Data inserted in location details<br>";
 } else {
