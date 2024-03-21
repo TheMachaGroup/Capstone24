@@ -21,22 +21,17 @@ if ($conn->query($sqlLocation) === TRUE) {
     echo "Error inserting record into locationdetails table: " . $conn->error . "<br>";
 }
 
-// Retrieve the ID of the last inserted record
-$locationId = $conn->insert_id;
-
 // Insert data into GeographicLocation table
-$sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
+$sqlGeo = "INSERT INTO GeographicLocation (GPSLocation) VALUES ('$gpsLocation')";
 if ($conn->query($sqlGeo) === TRUE) {
     echo "Data inserted into GeographicLocation<br>";
 } else {
     echo "Error inserting record into GeographicLocation table: " . $conn->error . "<br>";
 }
 
-// Retrieve the ID of the last inserted record
-$geoLocationId = $conn->insert_id;
 
 // Insert data into Form table with reference to GeographicLocation and locationdetails tables
-$sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
+$sqlForm = "INSERT INTO Form (ReportName, BuildingName, DateOfReport) VALUES ('$reportName', '$buildingName', '$reportdate')";
 if ($conn->query($sqlForm) === TRUE) {
     echo "Data inserted into Form table<br>";
 } else {
