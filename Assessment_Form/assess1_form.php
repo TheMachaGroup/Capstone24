@@ -1,27 +1,56 @@
-//The code below connects the login page to the database to validate the credentials in order to log in
 <?php
-echo "testing";
-try {
-    $conn = mysqli_init();
-    mysqli_real_connect($conn, "usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
-// Example query
-$sql = "SELECT * FROM users";
-$result = $conn->query($sql);
+ob_start();
 
-// Check if the query was successful
-if ($result === false) {
-    // Handle the error
-    echo "Error executing query: " . $conn->error;
-} else {
-    // Fetch and display the data
-    while ($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["UserID"] . " - Name: " . $row["Username"] . "<br>";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
+
+    echo "Connected to database<br>";
+
+    // Retrieve form data
+    $reportName = $_POST['HousingAssessment'];
+    $reportdate = $_POST['reportdate'];
+    $buildingName = $_POST['fname'];
+    $gpsLocation = $_POST['gps'];
+
+    // Insert data into locationdetails table
+    $sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')";
+
+    if ($conn->query($sqlLocation) === TRUE) {
+        // Retrieve the ID of the last inserted record
+        $locationId = $conn->insert_id;
+
+        // Insert data into GeographicLocation table
+        $sqlGeo = "INSERT INTO GeographicLocation (GPSLocation, LocationID) VALUES ('$gpsLocation', '$locationId')";
+
+        if ($conn->query($sqlGeo) === TRUE) {
+            // Retrieve the ID of the last inserted record
+            $geoLocationId = $conn->insert_id;
+
+            // Insert data into Form table with reference to GeographicLocation and locationdetails tables
+            $sqlForm = "INSERT INTO Form (ReportName, BuildingName, GeoLocationID, LocationID, DateOfReport) VALUES ('$reportName', '$buildingName', '$geoLocationId', '$locationId', '$reportdate')";
+
+            if ($conn->query($sqlForm) === TRUE) {
+                echo "Record inserted successfully<br>";
+                // Redirect to Form.html after successful insertion
+                header("Location: Form.html");
+                exit();
+            } else {
+                echo "Error inserting record into Form table: " . $conn->error . "<br>";
+            }
+        } else {
+            echo "Error inserting record into GeographicLocation table: " . $conn->error . "<br>";
+        }
+    } else {
+        echo "Error inserting record into locationdetails table: " . $conn->error . "<br>";
+    }
+
+    // Close the connection
+    $conn->close();
 }
-    
-  ?> 
+
+ob_end_flush();
+?>
