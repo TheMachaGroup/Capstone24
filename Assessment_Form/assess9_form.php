@@ -23,6 +23,18 @@ if ($conn->query($sqlRallyPointsInfo) === TRUE) {
     echo "Error inserting record into rallypointsinfo table: " . $conn->error . "<br>";
 }
 
+ // Insert data into Form table with reference to rallypointsinfo table
+            $sqlForm = "INSERT INTO form (DateofReport, RallyPointsID) VALUES ('$reportdate', '$rallyPointsID')";
+            if ($conn->query($sqlForm) === TRUE) {
+                echo "Data inserted into Form table<br>";
+            } else {
+                echo "Error inserting record into Form table: " . $conn->error . "<br>";
+            }
+        } else {
+            echo "Error inserting record into rallypointsinfo table: " . $conn->error . "<br>";
+        }
+    }
+
       // Close connection
     mysqli_close($conn);
 
