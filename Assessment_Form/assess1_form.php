@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($conn->query($sqlForm) === TRUE) {
                 echo "Record inserted successfully<br>";
                 // Redirect to Form.html after successful insertion
-                header("Location: Form.html");
+                header("Location: https://usarcent.azurewebsites.net/Form.html");
                 exit();
             } else {
                 echo "Error inserting record into Form table: " . $conn->error . "<br>";
