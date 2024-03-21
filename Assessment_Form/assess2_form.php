@@ -13,7 +13,7 @@ if (!$conn) {
     $state = $_POST['state'];
     $zip = $_POST['zip'];
     $country = $_POST['country'];
-    $comments = $_POST['BNComments'];
+    $comments = $_POST['BNComments2'];
     $gpsLocation = $_POST['gps'];
     $buildingName = $_POST['fname'];
 
