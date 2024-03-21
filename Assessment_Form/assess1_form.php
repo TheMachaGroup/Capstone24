@@ -16,7 +16,4 @@ if (!$conn) {
     $sqlLocation = "INSERT INTO locationdetails (LocationName) VALUES ('$reportName')"; 
 echo "data inserted"; 
 
-// Close the database connection when done
-mysqli_close($conn);
-}
 ?>
