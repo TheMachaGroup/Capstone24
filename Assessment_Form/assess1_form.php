@@ -12,9 +12,10 @@ $reportName = $_POST['HousingAssessment'];
 $reportdate = $_POST['reportdate'];
 $phoneNumber = $_POST['phoneNumber'];
 $unitType = $_POST['unitType'];
+$spaceType = $_POST['spaceType'];
 
 // Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofResidence) VALUES ('$reportName', '$phoneNumber', '$unitType')";
+$sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofResidence, TypeofUnit) VALUES ('$reportName', '$phoneNumber', '$unitType', '$spaceType')";
 if ($conn->query($sqlLocation) === TRUE) {
     echo "Data inserted in location details<br>";
 } else {
