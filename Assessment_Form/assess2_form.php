@@ -1,12 +1,11 @@
 <?php
-ob_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
+// Establish a connection to the MySQL database
+$conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected to database<br>";
+// Check if the connection was successful
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
    // Retrieve form data
     $address = $_POST['address'];
@@ -21,16 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $unitType = $_POST['unitType'];
     $spaceType = $_POST['spaceType'];
     $groundClosed = $_POST['groundclosed'];
+    $gpsLocation = $_POST['gps'];
 
     // Insert data into respective tables
     // Geographic Location Table
-    $sql_geo = "INSERT INTO GeographicLocation (GPS, Address, City, State, Zip, Country)
-                VALUES ('gps_value', '$address', '$city', '$state', '$zip', '$country')";
+    $sql_geo = "INSERT INTO geographiclocation (GeographicLocation, GPSLocation, City, StateProvince, Zip, Country)
+                VALUES ('$gpsLocation', '$address', '$city', '$state', '$zip', '$country')";
 
     if ($conn->query($sql_geo) === TRUE) {
-        $last_id = $conn->insert_id; // Get last inserted ID for foreign key reference
-    } else {
-        echo "Error: " . $sql_geo . "<br>" . $conn->error;
+        echo "Data inserted in geographiclocation<br>;
     }
 
     // Unit Requesting Assessment Table
