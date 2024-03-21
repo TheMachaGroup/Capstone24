@@ -1,34 +1,31 @@
 <?php
-ob_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
+// Establish a connection to the MySQL database
+$conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected to database<br>";
-
-   // Retrieve form data
-    $nObstructions = $_POST['nObstructions'];
-    $sObstructions = $_POST['sObstructions'];
-    $eObstructions = $_POST['eObstructions'];
-    $wObstructions = $_POST['wObstructions'];
-    $BNComments = $_POST['BNComments'];
-    
-    // Prepare and execute SQL statement to insert data into the database
-    $sql = "INSERT INTO standoff_information (nObstructions, sObstructions, eObstructions, wObstructions, BNComments) VALUES ('$nObstructions', '$sObstructions', '$eObstructions', '$wObstructions', '$BNComments')";
-    
-    // Check if the statement was executed successfully
-    if ($conn->query($sql) === TRUE) {
-        // Redirect to confirmation page
-        header("Location: Assessment_Form/confirmation.html");
-        exit();
-    } else {
-        // If execution fails, handle the error (e.g., display an error message)
-        echo "Error: Unable to save data.";
-    }
-    // Close the connection
-    $conn->close();
+// Check if the connection was successful
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-ob_end_flush();
+
+// Retrieve form data
+$nObstructions = $_POST['nObstructions'];
+$nsoa = $_POST['nsoa'];
+$sObstructions = $_POST['sObstructions'];
+$ssoa = $_POST['ssoa'];
+$eObstructions = $_POST['eObstructions'];
+$esoa = $_POST['esoa'];
+$wObstructions = $_POST['wObstructions'];
+$wsoa = $_POST['wsoa'];
+$BNComments = $_POST['BNComments4'];
+    
+// Prepare and execute SQL statement to insert data into the database
+$sql = "INSERT INTO standoffinformation (North, NorthIdentityObstruct, South, SouthIdentityObstruct, East, EastIdentityObstruct, West, WestIdentityObstruct, Comments) 
+VALUES ('$nsoa', '$nObstructions', '$ssoa', '$sObstructions', '$esoa', '$eObstructions', '$wsoa', '$wObstructions', '$BNComments')";
+// Check if the statement was executed successfully
+if ($conn->query($sql) === TRUE) {
+    echo "Inserted into standoffinformation table";
+}
+
+// Close the connection
+$conn->close();
 ?>
