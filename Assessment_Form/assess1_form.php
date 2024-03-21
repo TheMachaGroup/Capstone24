@@ -21,7 +21,7 @@ if ($conn->query($sqlLocation) === TRUE) {
     echo "Error inserting record into locationdetails table: " . $conn->error . "<br>";
 }
 
-// Insert data into GeographicLocation table
+// Insert data into GeographicLocation table - this data inserts as a primary key so if someone enters data in the form and that data is already a primary key of the database it will not work. 
 $sqlGeo = "INSERT INTO geographiclocation (GeographicLocation) VALUES ('$gpsLocation')";
 if ($conn->query($sqlGeo) === TRUE) {
     echo "Data inserted into GeographicLocation<br>";
