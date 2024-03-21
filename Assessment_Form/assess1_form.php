@@ -31,7 +31,7 @@ if ($conn->query($sqlGeo) === TRUE) {
 
 
 // Insert data into Form table with reference to GeographicLocation and locationdetails tables
-$sqlForm = "INSERT INTO form (ReportName, BuildingName, DateOfReport) VALUES ('$reportName', '$buildingName', '$reportdate')";
+$sqlForm = "INSERT INTO form (DateofReport) VALUES ('$reportdate')";
 if ($conn->query($sqlForm) === TRUE) {
     echo "Data inserted into Form table<br>";
 } else {
