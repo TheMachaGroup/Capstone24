@@ -7,24 +7,23 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-   // Retrieve form data
-    $address = $_POST['address'];
-    $city = $_POST['city'];
-    $state = $_POST['state'];
-    $zip = $_POST['zip'];
-    $country = $_POST['country'];
-    $comments = $_POST['BNComments2'];
-    $gpsLocation = $_POST['gps'];
-    $buildingName = $_POST['fname'];
+// Retrieve form data
+$address = $_POST['address'];
+$city = $_POST['city'];
+$state = $_POST['state'];
+$zip = $_POST['zip'];
+$country = $_POST['country'];
+$comments = $_POST['BNComments2'];
+$gpsLocation = $_POST['gps'];
+$buildingName = $_POST['fname'];
 
-    // Insert data into respective tables
-    // Geographic Location Table
-    $sql_geo = "INSERT INTO geographiclocation (GeographicLocation, Street, BuildingName, City, StateProvince, Zip, Country, Comments)
-                VALUES ('$gpsLocation', '$address', '$buildingName', '$city', '$state', '$zip', '$country', '$comments')";
-
-    if ($conn->query($sql_geo) === TRUE) {
-        echo "Data inserted in geographiclocation<br>;
-    }
+// Insert data into respective tables
+// Geographic Location Table
+$sql_geo = "INSERT INTO geographiclocation (GeographicLocation, Street, BuildingName, City, StateProvince, Zip, Country, Comments) 
+VALUES ('$gpsLocation', '$address', '$buildingName', '$city', '$state', '$zip', '$country', '$comments')";
+if ($conn->query($sql_geo) === TRUE) {
+    echo "Data inserted in geographiclocation<br>";
+}
   
 // Close the database connection when done
 mysqli_close($conn);
