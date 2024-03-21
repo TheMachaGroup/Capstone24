@@ -14,8 +14,6 @@ if (!$conn) {
     $zip = $_POST['zip'];
     $country = $_POST['country'];
     $comments = $_POST['BNComments'];
-    $numBuildings = $_POST['buildings'];
-    $numFloors = $_POST['floors'];
     $spaceType = $_POST['spaceType'];
     $groundClosed = $_POST['groundclosed'];
     $gpsLocation = $_POST['gps'];
@@ -31,8 +29,8 @@ if (!$conn) {
     }
 
     // Residential Housing Gen Info Table
-    $sql_residential = "INSERT INTO residentialhousinggeninfo (NumBuildings, NumFloors, SpaceType, GroundClosed)
-                        VALUES ('$numBuildings', '$numFloors', '$spaceType', '$groundClosed')";
+    $sql_residential = "INSERT INTO residentialhousinggeninfo (SpaceType, GroundClosed)
+                        VALUES ('$spaceType', '$groundClosed')";
   
 // Close the database connection when done
 mysqli_close($conn);
