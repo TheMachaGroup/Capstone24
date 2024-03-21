@@ -21,8 +21,8 @@ if (!$conn) {
 
     // Insert data into respective tables
     // Geographic Location Table
-    $sql_geo = "INSERT INTO geographiclocation (GeographicLocation, GPSLocation, BuildingName, City, StateProvince, Zip, Country)
-                VALUES ('$gpsLocation', '$address', '$fname', '$city', '$state', '$zip', '$country')";
+    $sql_geo = "INSERT INTO geographiclocation (GeographicLocation, BuildingName, City, StateProvince, Zip, Country)
+                VALUES ('$gps', '$address', '$fname', '$city', '$state', '$zip', '$country')";
 
     if ($conn->query($sql_geo) === TRUE) {
         echo "Data inserted in geographiclocation<br>;
