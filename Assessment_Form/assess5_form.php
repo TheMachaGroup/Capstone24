@@ -17,7 +17,8 @@ $pComments = $_POST['pComments'];
 $sql = "INSERT INTO parkinginformation (LocationOfParking, SecurityForParking, Lighting, Comments)
         VALUES ('$parkingArea', '$parkSec', '$light', '$pComments')";
 if ($conn->query($sql) === TRUE) {
-    echo "inserted into parking information table";
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
 }
   
 // Close the database connection when done
