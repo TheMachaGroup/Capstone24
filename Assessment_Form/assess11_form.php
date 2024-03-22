@@ -1,30 +1,23 @@
 <?php
-ob_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
+// Establish a connection to the MySQL database
+$conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected to database<br>";
-
+// Check if the connection was successful
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
    // Retrieve form data
     $subGuards = $_POST['subGuards'];
     $military = $_POST['Military'];
     $comments = $_POST['BNComments'];
 
     // SQL query to insert data into securitymanninginfo table
-    $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard) VALUES ('$subGuards', '$military')";
+    $sql_secman = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard) VALUES ('$subGuards', '$military')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    if ($conn->query($sql_secman) === TRUE) {
+        echo "Data inserted in Security Manning Info Tablebr>";
     }
     
-    //Close connection
-      $stmt->close();
-    $conn->close();
-}
-ob_end_flush();
+    // Close the database connection 
+mysqli_close($conn);
 ?>
