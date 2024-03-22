@@ -79,8 +79,7 @@
     <div class="tiles-container">
         <div class="tile" onclick="window.location.href = 'assess1.html';" style="position: relative;" data-formid="1">
             <div class="tile-content">
-	           <!-- Check session variable to determine icon color -->
-        <?php
+	           <?php
             // Check session variable to determine icon color
             if(isset($_SESSION['icon_color']) && $_SESSION['icon_color'] == 'green') {
                 echo '<div class="icon" style="position: absolute; top: 5px; right: 5px; background-color: green; color: white; padding: 5px; border-radius: 50%; font-size: 20px;"></div>';
