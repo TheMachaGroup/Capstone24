@@ -12,7 +12,7 @@ if (!$conn) {
     $BNcomments = $_POST['BNComments11'];
 
     // SQL query to insert data into securitymanninginfo table
-    $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard) VALUES ('$subGuards', '$military', '$BNComments')";
+    $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard, Comments) VALUES ('$subGuards', '$military', '$BNComments')";
     if ($conn->query($sql) === TRUE) {
         echo "Data inserted in Security Manning Info Tablebr>";
     }
