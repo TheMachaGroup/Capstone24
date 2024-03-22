@@ -14,7 +14,7 @@ if (!$conn) {
     $BNcomments = $_POST['BNComments10'];
 
     // SQL query to insert data into perimetersecurityinfo table
-    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard')";
+    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard, BNComments) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments)";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
