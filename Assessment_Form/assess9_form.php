@@ -12,28 +12,20 @@ if (!$conn) {
     $reinforced = $_POST['Reinforced'];
     $shield = $_POST['Shield'];
     $reStairwell = $_POST['ReStairwell'];
-    $comments = $_POST['BNComments'];
+    $comments = $_POST['BNComments9'];
 
 
     // SQL query to insert data into rallypointsinfo table
     $sqlRallyPointsInfo = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell')";
 if ($conn->query($sqlRallyPointsInfo) === TRUE) {
     echo "Data inserted in location details<br>";
-} else {
-    echo "Error inserting record into rallypointsinfo table: " . $conn->error . "<br>";
-}
+} 
 
  // Insert data into Form table with reference to rallypointsinfo table
             $sqlForm = "INSERT INTO form (DateofReport, RallyPointsID) VALUES ('$reportdate', '$rallyPointsID')";
             if ($conn->query($sqlForm) === TRUE) {
                 echo "Data inserted into Form table<br>";
-            } else {
-                echo "Error inserting record into Form table: " . $conn->error . "<br>";
-            }
-        } else {
-            echo "Error inserting record into rallypointsinfo table: " . $conn->error . "<br>";
-        }
-    }
+            } 
 
       // Close connection
     mysqli_close($conn);
