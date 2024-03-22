@@ -12,7 +12,7 @@ if (!$conn) {
     $perimeterLighting = $_POST['PL'];
     $gatedEntrance = $_POST['GatedEntrance'];
     $gateGuard = $_POST['GateGuard'];
-    $comments = $_POST['BNComments'];
+    $comments = $_POST['BNComments10'];
 
     // SQL query to insert data into perimetersecurityinfo table
     $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard')";
