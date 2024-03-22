@@ -1,5 +1,4 @@
 <?php
-
 // Establish a connection to the MySQL database
 $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
