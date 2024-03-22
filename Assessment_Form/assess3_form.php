@@ -18,8 +18,8 @@ if (!$conn) {
     $sql = "INSERT INTO occupancyinformation (TotalBuildings, NumFloors, TotalAptInComp, TotalOccByPersonnel, Comments, BNComments)
             VALUES ('$numBuildings', '$numFloors', '$totalRooms', '$totalPeople', '$occupancyComments', '$BNComments')";
     if ($conn->query($sql) === TRUE) {
-        echo "Successfully inserted into Occupancy information";
-}
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
 // Close the database connection when done
 mysqli_close($conn);
 ?>
