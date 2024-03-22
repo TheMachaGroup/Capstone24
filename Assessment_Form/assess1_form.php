@@ -22,7 +22,8 @@ $sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofRe
 $sqlForm = "INSERT INTO form (DateofReport) VALUES ('$reportdate')";
 if ($conn->query($sqlForm) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
-                    exit();
+    exit();
+}
 
 // Close the database connection when done
 mysqli_close($conn);
