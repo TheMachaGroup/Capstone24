@@ -15,7 +15,8 @@ $comments = $_POST["BNComments7"];
 // Insert data into the waterstorage table
 $sql = "INSERT INTO waterstorage (SecuredAccess, LockedContainer, comments) VALUES ('$is_access_secure', '$locked_container_structure', '$comments')";
 if ($conn->query($sql) === TRUE) {
-    echo "inserted successfully waterstoragesystem<br>";
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
 } 
 
 // Close the database connection when done
