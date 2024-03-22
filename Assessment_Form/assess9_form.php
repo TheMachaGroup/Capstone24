@@ -12,7 +12,7 @@ if (!$conn) {
     $reinforced = $_POST['Reinforced'];
     $shield = $_POST['Shield'];
     $reStairwell = $_POST['ReStairwell'];
-    $comments = $_POST['BNComments9'];
+    $BNcomments = $_POST['BNComments9'];
 
 
     // SQL query to insert data into rallypointsinfo table
