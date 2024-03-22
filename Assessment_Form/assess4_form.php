@@ -23,7 +23,8 @@ $sql = "INSERT INTO standoffinformation (North, NorthIdentityObstruct, South, So
 VALUES ('$nsoa', '$nObstructions', '$ssoa', '$sObstructions', '$esoa', '$eObstructions', '$wsoa', '$wObstructions', '$BNComments')";
 // Check if the statement was executed successfully
 if ($conn->query($sql) === TRUE) {
-    echo "Inserted into standoffinformation table";
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
 }
 
 // Close the connection
