@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Establish a connection to the MySQL database
 $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
@@ -21,6 +22,8 @@ $sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofRe
 // Insert data into Form table with reference to GeographicLocation and locationdetails tables
 $sqlForm = "INSERT INTO form (DateofReport) VALUES ('$reportdate')";
 if ($conn->query($sqlForm) === TRUE) {
+    // Set session variable to indicate successful form submission
+    $_SESSION['icon_color'] = 'green';
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
 }
