@@ -79,14 +79,7 @@
     <div class="tiles-container">
         <div class="tile" onclick="window.location.href = 'assess1.html';" style="position: relative;" data-formid="1">
             <div class="tile-content">
-	           <?php
-            // Check session variable to determine icon color
-            if(isset($_SESSION['icon_color']) && $_SESSION['icon_color'] == 'green') {
-                echo '<div class="icon" style="position: absolute; top: 5px; right: 5px; background-color: green; color: white; padding: 5px; border-radius: 50%; font-size: 20px;"></div>';
-            } else {
-                echo '<div class="icon" style="position: absolute; top: 5px; right: 5px; background-color: red; color: white; padding: 5px; border-radius: 50%; font-size: 20px;"></div>';
-            }
-            ?>
+	            <div class="icon" style="position: absolute; top: 5px; right: 5px; background-color: green; color: white; padding: 5px; border-radius: 50%; font-size: 20px;"></div>
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/014/391/893/small/home-icon-isolated-on-transparent-background-black-symbol-for-your-design-free-png.png" alt="House Icon" style="width:190px;height:100px;">
                 <br>
                 Housing / Office Area Information
