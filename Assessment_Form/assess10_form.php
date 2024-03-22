@@ -6,22 +6,19 @@ $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide",
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
    / // Retrieve form data
     $perimeterBarriers = $_POST['PB'];
     $perimeterLighting = $_POST['PL'];
     $gatedEntrance = $_POST['GatedEntrance'];
     $gateGuard = $_POST['GateGuard'];
-    $comments = $_POST['BNComments10'];
+    $BNcomments = $_POST['BNComments10'];
 
     // SQL query to insert data into perimetersecurityinfo table
     $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    } 
 
    // Close the database connection when done
 mysqli_close($conn);
