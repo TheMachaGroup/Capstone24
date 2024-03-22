@@ -20,6 +20,8 @@ if (!$conn) {
     if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
+    }
+
 // Close the database connection when done
 mysqli_close($conn);
 ?>
