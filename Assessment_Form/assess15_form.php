@@ -10,7 +10,7 @@ if (!$conn) {
  // Retrieve form data
     $rsoComments = $_POST['RSO'];
     $miscellaneousInfo = $_POST['ai'];
-    $bnComments = $_POST['BNComments15'];
+    $bnComments = $_POST['BNComments13'];
 
     // Prepare SQL statement to insert data into annualassessment table
     $sql = "INSERT INTO annualassessment (RSOComments, MiscellaneousInfo, BNComments) VALUES ('$rsoComments', '$miscellaneousInfo', '$bnComments')";
