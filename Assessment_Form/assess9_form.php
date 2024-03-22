@@ -16,8 +16,8 @@ if (!$conn) {
 
 
     // SQL query to insert data into rallypointsinfo table
-    $sqlRallyPointsInfo = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell')";
-if ($conn->query($sqlRallyPointsInfo) === TRUE) {
+    $sql_RallyPointsInfo = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell')";
+if ($conn->query($sql_RallyPointsInfo) === TRUE) {
     echo "Data inserted in location details<br>";
 } 
 
