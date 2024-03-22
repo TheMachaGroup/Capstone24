@@ -14,7 +14,7 @@ if (!$conn) {
     $comments = $_POST['BNComments9'];
 
     // SQL query to insert data into rallypointsinfo table
-    $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell', '$comments')";
+    $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell', '$BNcomments')";
     if ($conn->query($sql) === TRUE) {
         echo "Data inserted in location details<br>";
 } 
