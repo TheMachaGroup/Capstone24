@@ -8,11 +8,11 @@ if (!$conn) {
 }
    // Retrieve form data
     $subGuards = $_POST['subGuards'];
-    $military = $_POST['Military'];
+    $militarySecGuard = $_POST['MilitarySecGuard'];
     $BNcomments = $_POST['BNComments11'];
 
     // SQL query to insert data into securitymanninginfo table
-    $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard, Comments) VALUES ('$subGuards', '$military', '$BNComments')";
+    $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard, Comments) VALUES ('$subGuards', '$militarySecGuard', '$BNComments')";
     if ($conn->query($sql) === TRUE) {
         echo "Data inserted in Security Manning Info Tablebr>";
     }
