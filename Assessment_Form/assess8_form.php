@@ -16,7 +16,8 @@ $comments = $_POST["BNComments8"];
 $sql = "INSERT INTO demographicsinfo (SurroundingPop, CrimeViolenceHistory, comments) 
 VALUES ('$surrounding_population', '$crime_violence_history', '$comments')";
 if ($conn->query($sql) === TRUE) {
-    echo "Record inserted successfully<br>";
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
 } 
 
 // Close the database connection when done
