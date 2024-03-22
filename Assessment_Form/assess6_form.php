@@ -16,7 +16,8 @@ $comments = $_POST["BNComments6"];
 $sql = "INSERT INTO entryandcirculationinformation (VehiclesMonitored, EntryControlled, Comments) 
 VALUES ('$monitored_outside', '$entry_controlled', '$comments')";
 if ($conn->query($sql) === TRUE) {
-    echo "inserted successfully into table<br>";
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
 }
 
 // Close the database connection when done
