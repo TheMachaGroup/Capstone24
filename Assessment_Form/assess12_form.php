@@ -1,13 +1,12 @@
 <?php
-ob_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = new mysqli("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    echo "Connected to database<br>";
+// Establish a connection to the MySQL database
+$conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
+// Check if the connection was successful
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
     // Retrieve form data
     $maintainKeys = $_POST['Maintain'];
     $roofAccess = $_POST['roofAccess'];
@@ -18,22 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mosquesNearby = $_POST['Mosques'];
     $outsideGroundsDesc = $_POST['groundOpenings'];
     $pointsOfEntryNumber = $_POST['pointEntry'];
-    $comments = $_POST['BNComments'];
-
+    $comments = $_POST['BNComments12'];
 
     // SQL query to insert data into residentialhousinggeninfo table
-    $sql = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments) VALUES ('$maintainKeys', '$roofAccess', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$comments')";
+    $sql_rhggi = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments) VALUES ('$maintainKeys', '$roofAccess', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$comments')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-       
-    // Close the statement and connection
-    $stmtStandoff->close();
-    $conn->close();
-}
-ob_end_flush();
-?>
+    if ($conn->query($sql_rhggi) === TRUE) {
+        echo "Successfully inserted into Residential Housing General Info table";
+        }
+
+// Close the connection 
+mysqli_close($conn);
+
+?>       
+    
 
