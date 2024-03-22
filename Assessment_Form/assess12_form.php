@@ -1,5 +1,4 @@
 <?php
-
 // Establish a connection to the MySQL database
 $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide", "0LB5E265UCUE1D5E$", "usarcent-database", 3306);
 
@@ -17,12 +16,11 @@ if (!$conn) {
     $mosquesNearby = $_POST['Mosques'];
     $outsideGroundsDesc = $_POST['groundOpenings'];
     $pointsOfEntryNumber = $_POST['pointEntry'];
-    $comments = $_POST['BNComments12'];
+    $BNcomments = $_POST['BNComments12'];
 
     // SQL query to insert data into residentialhousinggeninfo table
-    $sql_rhggi = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments) VALUES ('$maintainKeys', '$roofAccess', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$comments')";
-
-    if ($conn->query($sql_rhggi) === TRUE) {
+    $sql = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments) VALUES ('$maintainKeys', '$roofAccess', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$comments')";
+    if ($conn->query($sql) === TRUE) {
         echo "Successfully inserted into Residential Housing General Info table";
         }
 
