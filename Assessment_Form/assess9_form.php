@@ -22,7 +22,7 @@ if ($conn->query($sqlRallyPointsInfo) === TRUE) {
 } 
 
  // Insert data into Form table with reference to rallypointsinfo table
-            $sqlForm = "INSERT INTO form (DateofReport, RallyPointsID) VALUES ('$reportdate', '$rallyPointsID')";
+            $sql_form = "INSERT INTO form (DateofReport, RallyPointsID) VALUES ('$reportdate', '$rallyPointsID')";
             if ($conn->query($sqlForm) === TRUE) {
                 echo "Data inserted into Form table<br>";
             } 
