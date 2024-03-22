@@ -7,23 +7,17 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
     // Retrieve form data
-    $complexDistance = $_POST['ComplexDistance'];
-    $reinforced = $_POST['Reinforced'];
-    $shield = $_POST['Shield'];
-    $reStairwell = $_POST['ReStairwell'];
-    $BNcomments = $_POST['BNComments9'];
+    $complexDistance = $_POST['ParkingDistance'];
+    $reinforced = $_POST['ReinforcedConcBasementOrParking'];
+    $shield = $_POST['ShieldedEvacSiteMeters'];
+    $reStairwell = $_POST['ReinforcedConcStairwell'];
+    $comments = $_POST['BNComments9'];
 
     // SQL query to insert data into rallypointsinfo table
-    $sql_RallyPointsInfo = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell')";
-    if ($conn->query($sql_RallyPointsInfo) === TRUE) {
+    $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$complexDistance', '$reinforced', '$shield', '$reStairwell', '$comments')";
+    if ($conn->query($sql) === TRUE) {
         echo "Data inserted in location details<br>";
 } 
-
- // Insert data into Form table with reference to rallypointsinfo table
-     $sqlForm = "INSERT INTO form (DateofReport, RallyPointsID) VALUES ('$reportdate', '$rallyPointsID')";
-         if ($conn->query($sqlForm) === TRUE) {
-             echo "Data inserted into Form table<br>";
-     } 
 
       // Close connection
     mysqli_close($conn);
