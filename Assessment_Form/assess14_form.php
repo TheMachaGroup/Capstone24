@@ -9,9 +9,10 @@ if (!$conn) {
     // Retrieve form data
     $positiveAspects = $_POST['PosComments'];
     $negativeAspects = $_POST['NegComments'];
+    $posneg = $_POST['PosNeg'};
 
     // Prepare SQL statement to insert data into PositiveNegative table
-    $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects) VALUES ('$positiveAspects', '$negativeAspects')";
+    $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects, PosNeg) VALUES ('$positiveAspects', '$negativeAspects', '$posNeg')";
  if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
