@@ -6,19 +6,27 @@ $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide",
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-    // Retrieve form data
-    $parkingDistance = $_POST['ParkingDistance'];
-    $reinforced = $_POST['ReinforcedConcBasementOrParking'];
-    $shield = $_POST['ShieldedEvacSiteMeters'];
-    $reStairwell = $_POST['ReinforcedConcStairwell'];
-    $BNcomments = $_POST['BNComments9'];
 
-    // SQL query to insert data into rallypointsinfo table
-    $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$parkingDistance', '$reinforced', '$shield', '$reStairwell', '$BNcomments')";
- if ($conn->query($sql) === TRUE) {
+// Retrieve form data
+$parkingDistance = mysqli_real_escape_string($conn, $_POST['ParkingDistance']);
+$reinforced = mysqli_real_escape_string($conn, $_POST['ReinforcedConcBasementOrParking']);
+$shield = mysqli_real_escape_string($conn, $_POST['ShieldedEvacSiteMeters']);
+$reStairwell = mysqli_real_escape_string($conn, $_POST['ReinforcedConcStairwell']);
+$BNcomments = mysqli_real_escape_string($conn, $_POST['BNComments9']);
+
+// SQL query to insert data into rallypointsinfo table
+$sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$parkingDistance', '$reinforced', '$shield', '$reStairwell', '$BNcomments')";
+
+// Execute the query
+if ($conn->query($sql) === TRUE) {
+    // If successful, redirect to Form.html
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
-} 
-      // Close connection
-    mysqli_close($conn);
+} else {
+    // If an error occurs, display the error message
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close connection
+mysqli_close($conn);
 ?>
