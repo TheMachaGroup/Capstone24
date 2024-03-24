@@ -14,7 +14,8 @@ if (!$conn) {
     // SQL query to insert data into securitymanninginfo table
     $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard, Comments) VALUES ('$subGuards', '$militarySecGuard', '$BNComments')";
     if ($conn->query($sql) === TRUE) {
-        echo "Data inserted in Security Manning Info Tablebr>";
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
     }
     
     // Close the database connection 
