@@ -15,10 +15,10 @@ if (!$conn) {
 
     // SQL query to insert data into perimetersecurityinfo table
     $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard, BNComments) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments)";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } 
+         if ($conn->query($sql) === TRUE) {
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
+    }
 
    // Close the database connection when done
 mysqli_close($conn);
