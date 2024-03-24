@@ -15,12 +15,10 @@ if (!$conn) {
 
     // SQL query to insert data into rallypointsinfo table
     $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$parkingDistance', '$reinforced', '$shield', '$reStairwell', '$BNcomments')";
-  if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-    }
+ if ($conn->query($sql) === TRUE) {
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
+} 
       // Close connection
     mysqli_close($conn);
 ?>
