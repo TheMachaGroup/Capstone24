@@ -68,7 +68,7 @@ label {
     <br>
     <h3 style="text-align:center;"><u>SECURITY MANNING</u></h3>
 
-    <form action="confirmation.html" method="POST"> <!--This is the start of the form. It will later use the information in form.php to push data to the database-->
+    <form action="assess11_form.php" method="POST"> <!--This is the start of the form. It will later use the information in form.php to push data to the database-->
 		<div class="Container">
             <div class="housing">
                 <div>
@@ -86,29 +86,9 @@ label {
                 </div>
             </div>    
         </div>
-     <button class="save-button" onclick="saveFormAndRedirect()">Save and Close</button>
+	 <button type="submit" class="save-button" id="submit">Save and Close</button>
 </form>
 
-<script>
-	function saveFormAndRedirect() {
-		//save in local storage that this form has been submitted
-		var frmProgressData = localStorage.getItem('formsCompleted');
-		var frmProgressArray = [];
-		if (frmProgressData && Array.isArray(JSON.parse(frmProgressData))) {
-		    frmProgressArray = JSON.parse(frmProgressData);
-		}
-		var formID = 11; // Change this to the value for each form
-		if (!frmProgressArray.includes(formID)) {
-		    frmProgressArray.push(formID);
-		    localStorage.setItem('formsCompleted', JSON.stringify(frmProgressArray));
-		}
-	    // Change the style of the h3 element to green
-	    document.getElementById('status').style.color = 'green';
-	    
-	    // Redirect to Form.html
-	    window.location.href = 'Form.html';
-	}
-</script>
 
     <!--This will implement the required interactions for a visually smoother experience-->
     <script src="./Assessment_Form/form.js" type="text/javascript"></script>
