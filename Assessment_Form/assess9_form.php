@@ -11,13 +11,14 @@ if (!$conn) {
     $reinforced = $_POST['ReinforcedConcBasementOrParking'];
     $shield = $_POST['ShieldedEvacSiteMeters'];
     $reStairwell = $_POST['ReinforcedConcStairwell'];
-    $comments = $_POST['BNComments9'];
+    $BNcomments = $_POST['BNComments9'];
 
     // SQL query to insert data into rallypointsinfo table
     $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$parkingDistance', '$reinforced', '$shield', '$reStairwell', '$BNcomments')";
     if ($conn->query($sql) === TRUE) {
-        echo "Data inserted in location details<br>";
-} 
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
+    }
 
       // Close connection
     mysqli_close($conn);
