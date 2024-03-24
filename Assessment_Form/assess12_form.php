@@ -20,9 +20,10 @@ if (!$conn) {
 
     // SQL query to insert data into residentialhousinggeninfo table
     $sql = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments) VALUES ('$maintainKeys', '$roofAccess', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$comments')";
-    if ($conn->query($sql) === TRUE) {
-        echo "Successfully inserted into Residential Housing General Info table";
-        }
+   if ($conn->query($sql) === TRUE) {
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
+    }
 
 // Close the connection 
 mysqli_close($conn);
