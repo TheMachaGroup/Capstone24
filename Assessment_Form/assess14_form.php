@@ -12,10 +12,10 @@ if (!$conn) {
 
     // Prepare SQL statement to insert data into PositiveNegative table
     $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects) VALUES ('$positiveAspects', '$negativeAspects')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } 
+ if ($conn->query($sql) === TRUE) {
+    header("Location: https://usarcent.azurewebsites.net/Form.html");
+    exit();
+    }
 
    // Close the connection
 mysqli_close($conn);
