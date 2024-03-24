@@ -13,7 +13,7 @@ if (!$conn) {
     $BNComments = $_POST['BNComments15'];
 
     // Prepare SQL statement to insert data into annualassessment table
-    $sql = "INSERT INTO annualassessment (RSOComments, MiscellaneousInfo, BNComments) VALUES ('$rsoComments', '$miscellaneousInfo', '$bnComments')";
+    $sql = "INSERT INTO annualassessment (RSOComments, MiscellaneousInfo, BNComments) VALUES ('$rsoComments', '$miscellaneousInfo', '$BNComments')";
          if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
