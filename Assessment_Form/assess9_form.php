@@ -19,7 +19,6 @@ if (!$conn) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
     }
-
       // Close connection
     mysqli_close($conn);
 ?>
