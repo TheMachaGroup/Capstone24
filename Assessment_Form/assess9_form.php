@@ -8,11 +8,11 @@ if (!$conn) {
 }
 
 // Retrieve form data
-$parkingDistance = $_POST['ParkingDistance']);
-$reinforced = $_POST['ReinforcedConcBasementOrParking']);
-$shield = $_POST['ShieldedEvacSiteMeters']);
-$reStairwell = $_POST['ReinforcedConcStairwell']);
-$BNcomments = $_POST['BNComments9']);
+$parkingDistance = $_POST['ParkingDistance'];
+$reinforced = $_POST['ReinforcedConcBasementOrParking'];
+$shield = $_POST['ShieldedEvacSiteMeters'];
+$reStairwell = $_POST['ReinforcedConcStairwell'];
+$BNcomments = $_POST['BNComments9'];
 
 // SQL query to insert data into rallypointsinfo table
 $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$parkingDistance', '$reinforced', '$shield', '$reStairwell', '$BNcomments')";
