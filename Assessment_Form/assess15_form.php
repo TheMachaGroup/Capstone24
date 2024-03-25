@@ -9,7 +9,7 @@ if (!$conn) {
 
  // Retrieve form data
     $rsoComments = $_POST['RSO'];
-    $miscellaneousInfo = $_POST['ai'];
+    $miscellaneousInfo = $_POST['MiscellaneousInfo'];
     $BNComments = $_POST['BNComments15'];
 
     // Prepare SQL statement to insert data into annualassessment table
