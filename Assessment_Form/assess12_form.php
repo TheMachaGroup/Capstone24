@@ -15,7 +15,7 @@ if (!$conn) {
     $obstruction = $_POST['Obstruction'];
     $mosquesNearby = $_POST['MosquesNearby'];
     $outsideGroundsDesc = $_POST['groundOpenings'];
-    $pointsOfEntryNumber = $_POST['PointofEntryNumber'];
+    $pointsOfEntryNumber = $_POST['PointsofEntryNumber'];
     $BNcomments = $_POST['BNComments12'];
 
     // SQL query to insert data into residentialhousinggeninfo table
