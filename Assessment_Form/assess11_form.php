@@ -9,7 +9,7 @@ if (!$conn) {
    // Retrieve form data
     $subGuards = $_POST['subGuards'];
     $military= $_POST['Military'];
-    $BNcomments = $_POST['BNComments11'];
+    $BNComments = $_POST['BNComments11'];
 
     // SQL query to insert data into securitymanninginfo table
     $sql = "INSERT INTO securitymanninginfo (SubGuards, Military, Comments) VALUES ('$subGuards', '$military', '$BNComments')";
