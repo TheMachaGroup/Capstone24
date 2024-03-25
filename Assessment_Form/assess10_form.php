@@ -15,7 +15,7 @@ if (!$conn) {
 
     // SQL query to insert data into perimetersecurityinfo table
     $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarriers, PerimeterLighting, GatedEntrance, GateGuard, BNComments) 
-    VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments')";
+    VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNcomments')";
          if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
