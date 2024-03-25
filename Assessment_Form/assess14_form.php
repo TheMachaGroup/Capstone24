@@ -12,7 +12,7 @@ if (!$conn) {
  $posNeg = $_POST['PosNeg']);
 
     // Prepare SQL statement to insert data into PositiveNegative table
-    $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects, PosNeg) VALUES ('$positiveAspects', '$negativeAspects', '$posNeg')";
+    $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects) VALUES ('$positiveAspects', '$negativeAspects')";
  if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
