@@ -8,11 +8,11 @@ if (!$conn) {
 }
 
 // Retrieve form data
-$parkingDistance = mysqli_real_escape_string($conn, $_POST['ParkingDistance']);
-$reinforced = mysqli_real_escape_string($conn, $_POST['ReinforcedConcBasementOrParking']);
-$shield = mysqli_real_escape_string($conn, $_POST['ShieldedEvacSiteMeters']);
-$reStairwell = mysqli_real_escape_string($conn, $_POST['ReinforcedConcStairwell']);
-$BNcomments = mysqli_real_escape_string($conn, $_POST['BNComments9']);
+$parkingDistance = $_POST['ParkingDistance']);
+$reinforced = $_POST['ReinforcedConcBasementOrParking']);
+$shield = $_POST['ShieldedEvacSiteMeters']);
+$reStairwell = $_POST['ReinforcedConcStairwell']);
+$BNcomments = $_POST['BNComments9']);
 
 // SQL query to insert data into rallypointsinfo table
 $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) VALUES ('$parkingDistance', '$reinforced', '$shield', '$reStairwell', '$BNcomments')";
