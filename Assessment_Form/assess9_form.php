@@ -7,11 +7,12 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+
 // Retrieve form data
 $parkingDistance = $_POST['ParkingDistance'];
 $reinforcedConcBasementOrParking = $_POST['Reinforced'];
-$shieldedEvacSiteMeters = $_POST['ShieldedEvacSiteMeters'];
-$reinforcedConcStairwell = $_POST['ReinforcedConcStairwell'];
+$shieldedEvacSiteMeters = $_POST['Shield'];
+$reinforcedConcStairwell = $_POST['Stairwell'];
 $BNComments = $_POST['BNComments9'];
 
 // SQL query to insert data into rallypointsinfo table
@@ -28,6 +29,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-// Close connection
+
+// Close the database connection when done
 mysqli_close($conn);
 ?>
