@@ -9,9 +9,9 @@ if (!$conn) {
 
 // Retrieve form data
 $parkingDistance = $_POST['ParkingDistance'];
-$reinforced = $_POST['ReinforcedConcBasementOrParking'];
-$shield = $_POST['ShieldedEvacSiteMeters'];
-$reStairwell = $_POST['ReinforcedConcStairwell'];
+$reinforcedoncBasementOrParking = $_POST['ReinforcedConcBasementOrParking'];
+$shieldedEvacSiteMeters = $_POST['ShieldedEvacSiteMeters'];
+$reinforcedConcStairwell = $_POST['ReinforcedConcStairwell'];
 $BNcomments = $_POST['BNComments9'];
 
 // SQL query to insert data into rallypointsinfo table
