@@ -9,7 +9,6 @@ if (!$conn) {
     // Retrieve form data
  $positiveAspects = $_POST['PosComments']);
  $negativeAspects = $_POST['NegComments']);
- $posNeg = $_POST['PosNeg']);
 
     // Prepare SQL statement to insert data into PositiveNegative table
     $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects) VALUES ('$positiveAspects', '$negativeAspects')";
