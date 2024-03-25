@@ -7,8 +7,8 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
     // Retrieve form data
- $positiveAspects = $_POST['PosComments']);
- $negativeAspects = $_POST['NegComments']);
+ $positiveAspects = $_POST['PositiveAspects']);
+ $negativeAspects = $_POST['NegativeAspects']);
 
     // Prepare SQL statement to insert data into PositiveNegative table
     $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects) VALUES ('$positiveAspects', '$negativeAspects')";
