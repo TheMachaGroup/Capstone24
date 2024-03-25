@@ -12,11 +12,11 @@ $parkingDistance = $_POST['ParkingDistance'];
 $reinforcedConcBasementOrParking = $_POST['Reinforced'];
 $shieldedEvacSiteMeters = $_POST['ShieldedEvacSiteMeters'];
 $reinforcedConcStairwell = $_POST['ReinforcedConcStairwell'];
-$BNcomments = $_POST['BNComments9'];
+$BNComments = $_POST['BNComments9'];
 
 // SQL query to insert data into rallypointsinfo table
 $sql = "INSERT INTO rallypointsinfo (ParkingDistance, ReinforcedConcBasementOrParking, ShieldedEvacSiteMeters, ReinforcedConcStairwell, BNComments) 
-VALUES ('$parkingDistance', '$reinforcedConcBasementOrParking', '$shieldedEvacSiteMeters', '$reinforcedConcStairwell', '$BNcomments')";
+VALUES ('$parkingDistance', '$reinforcedConcBasementOrParking', '$shieldedEvacSiteMeters', '$reinforcedConcStairwell', '$BNComments')";
 
 // Execute the query
 if ($conn->query($sql) === TRUE) {
