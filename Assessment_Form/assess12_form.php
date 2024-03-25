@@ -8,18 +8,18 @@ if (!$conn) {
 }
     // Retrieve form data
     $maintainKeys = $_POST['Maintain'];
-    $roofAccess = $_POST['roofAccess'];
+    $roofEntry = $_POST['roofEntry'];
     $groundAccess = $_POST['groundAccess'];
-    $publicParking = $_POST['Occupants'];
-    $businessOffices = $_POST['BorC'];
+    $publicParking = $_POST['publicParking'];
+    $businessOfficesPresent = $_POST['BusinessOficesPresent'];
     $obstruction = $_POST['Obstruction'];
-    $mosquesNearby = $_POST['Mosques'];
+    $mosquesNearby = $_POST['MosquesNearby'];
     $outsideGroundsDesc = $_POST['groundOpenings'];
-    $pointsOfEntryNumber = $_POST['pointEntry'];
+    $pointsOfEntryNumber = $_POST['PointofEntryNumber'];
     $BNcomments = $_POST['BNComments12'];
 
     // SQL query to insert data into residentialhousinggeninfo table
-    $sql = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments) VALUES ('$maintainKeys', '$roofAccess', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$comments')";
+    $sql = "INSERT INTO residentialhousinggeninfo (Maintain, EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments) VALUES ('$maintainKeys', '$roofAccess', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$comments')";
    if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
