@@ -8,7 +8,7 @@ if (!$conn) {
 }
 
  // Retrieve form data
-    $rsoComments = $_POST['RSO'];
+    $rsoComments = $_POST['RSOComments'];
     $miscellaneousInfo = $_POST['MiscellaneousInfo'];
     $BNComments = $_POST['BNComments15'];
 
