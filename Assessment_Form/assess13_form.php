@@ -20,14 +20,14 @@ if (!$conn) {
 
    
     // SQL query to insert data into policeforce table
-    $sql_Police = "INSERT INTO policeforce (PoliceForce, Distance, PhoneNumber, PoliceLocation) VALUES ('$policeStation', '$policeDistance', '$policeNumber', '$policeTime')";
+    $sql_Police = "INSERT INTO policeforce (PoliceStation, Distance, PhoneNumber, PoliceTime) VALUES ('$policeStation', '$policeDistance', '$policeNumber', '$policeTime')";
 
     if ($conn->query($sql_Police) === TRUE) {
         echo "New police record created successfully";
     }
 
     // SQL query to insert data into firedepartment table
-    $sql_Fire = "INSERT INTO firedepartment (FireDepartment, Distance, PhoneNumber, FireLocation) VALUES ('$fireStation', '$fireDistance', '$fireNumber', '$fireTime')";
+    $sql_Fire = "INSERT INTO firedepartment (FireStation, Distance, PhoneNumber, FireTime) VALUES ('$fireStation', '$fireDistance', '$fireNumber', '$fireTime')";
 
     if ($conn->query($sql_Fire) === TRUE) {
         echo "New fire record created successfully";
