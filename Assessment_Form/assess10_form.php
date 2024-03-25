@@ -14,11 +14,14 @@ if (!$conn) {
     $BNcomments = $_POST['BNComments10'];
 
     // SQL query to insert data into perimetersecurityinfo table
-    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarriers, PerimeterLighting, GatedEntrance, GateGuard, BNComments) VALUES ('$PB', '$PL', '$gatedEntrance', '$gateGuard', '$BNComments)";
+    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarriers, PerimeterLighting, GatedEntrance, GateGuard, BNComments) VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments';
          if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
-    }
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
 
    // Close the database connection when done
 mysqli_close($conn);
