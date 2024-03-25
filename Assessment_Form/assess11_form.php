@@ -8,11 +8,11 @@ if (!$conn) {
 }
    // Retrieve form data
     $subGuards = $_POST['subGuards'];
-    $militarySecGuard = $_POST['MilitarySecGuard'];
+    $military= $_POST['Military'];
     $BNcomments = $_POST['BNComments11'];
 
     // SQL query to insert data into securitymanninginfo table
-    $sql = "INSERT INTO securitymanninginfo (SubGuards, MilitarySecGuard, Comments) VALUES ('$subGuards', '$militarySecGuard', '$BNComments')";
+    $sql = "INSERT INTO securitymanninginfo (SubGuards, Military, Comments) VALUES ('$subGuards', '$military', '$BNComments')";
     if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
