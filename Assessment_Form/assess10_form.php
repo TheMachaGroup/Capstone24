@@ -6,24 +6,29 @@ $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide",
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-   / // Retrieve form data
-    $perimeterBarriers = $_POST['PB'];
-    $perimeterLighting = $_POST['PL'];
-    $gatedEntrance = $_POST['GatedEntrance'];
-    $gateGuard = $_POST['GateGuard'];
-    $BNComments = $_POST['BNComments10'];
 
-    // SQL query to insert data into perimetersecurityinfo table
-    $sql = "INSERT INTO perimetersecurityinfo (PerimeterBarriers, PerimeterLighting, GatedEntrance, GateGuard, BNComments) 
-    VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments')";
-         if ($conn->query($sql) === TRUE) {
+
+$perimeterBarriers = $_POST['PB'];
+$perimeterLighting = $_POST['PL'];
+$gatedEntrance = $_POST['GatedEntrance'];
+$gateGuard = $_POST['GateGuard'];
+$BNComments = $_POST['BNComments10'];
+
+// SQL query to insert data into perimetersecurityinfo table
+$sql = "INSERT INTO perimetersecurityinfo (PB, PL, GatedEntrance, GateGuard, BNComments) 
+VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments')";
+
+// Execute the query
+if ($conn->query($sql) === TRUE) {
+    // If successful, redirect to Form.html
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
 } else {
+    // If an error occurs, display the error message
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
 
-   // Close the database connection when done
+// Close the database connection when done
 mysqli_close($conn);
 ?>
