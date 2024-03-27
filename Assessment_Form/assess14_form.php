@@ -6,17 +6,19 @@ $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide",
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-    // Retrieve form data
- $positiveAspects = $_POST['PositiveAspects']);
- $negativeAspects = $_POST['NegativeAspects']);
 
-    // Prepare SQL statement to insert data into PositiveNegative table
-    $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects) VALUES ('$positiveAspects', '$negativeAspects')";
- if ($conn->query($sql) === TRUE) {
+// Retrieve form data
+$positiveAspects = $_POST['PosComments']);
+$negativeAspects = $_POST['NegComments']);
+
+// Prepare SQL statement to insert data into PositiveNegative table
+$sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects)
+VALUES ('$positiveAspects', '$negativeAspects')";
+if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
-    }
+}
 
-   // Close the connection
+// Close the connection
 mysqli_close($conn);
 ?>
