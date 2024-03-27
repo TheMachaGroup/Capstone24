@@ -34,11 +34,13 @@ $hospitalResponseTime = $_POST['hospitalResponseTime'];
 $hospitalSql = "INSERT INTO hospital (Hospital, Distance, HospitalNumber, HospitalResponseTime) 
 VALUES ('$hospital', '$distance', '$phoneNumber', '$hospitalResponseTime')";
 
-if ($conn->query($sql) === TRUE) {
+// Execute SQL queries
+if ($conn->query($policeSql) === TRUE && $conn->query($fireSql) === TRUE && $conn->query($hospitalSql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
+} else {
+    echo "Error: " . $conn->error;
 }
-
 
    // Close the database connection when done
 mysqli_close($conn);
