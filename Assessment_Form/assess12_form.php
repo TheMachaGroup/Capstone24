@@ -8,7 +8,7 @@ if (!$conn) {
 }
 
 // Retrieve form data
-$entranceKeyHolders = $_POST['EntranceKeyHolders'];
+$entranceKeyHolders = $_POST['entranceKeyHolders'];
 $roofEntry = $_POST['roofEntry'];
 $groundAccess = $_POST['groundAccess'];
 $publicParking = $_POST['publicParking'];
