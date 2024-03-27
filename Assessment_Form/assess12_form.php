@@ -7,6 +7,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+
 // Retrieve form data
 $entranceKeyHolders = $_POST['entranceKeyHolders'];
 $roofEntry = $_POST['roofEntry'];
@@ -27,6 +28,7 @@ if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
 }
+
 
 // Close the connection 
 mysqli_close($conn);
