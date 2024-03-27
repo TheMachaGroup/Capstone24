@@ -8,8 +8,8 @@ if (!$conn) {
 }
 
 // Retrieve form data
-$positiveAspects = $_POST['PosComments']);
-$negativeAspects = $_POST['NegComments']);
+$positiveAspects = $_POST['PosComments'];
+$negativeAspects = $_POST['NegComments'];
 
 // Prepare SQL statement to insert data into PositiveNegative table
 $sql = "INSERT INTO PositiveNegative (PositiveAspects, NegativeAspects)
