@@ -16,7 +16,7 @@ $gateGuard = $_POST['GateGuard'];
 $BNComments = $_POST['BNComments10'];
 
 // SQL query to insert data into perimetersecurityinfo table
-$sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, GatedEntrance, GateGuard, BNComments) 
+$sql = "INSERT INTO perimetersecurityinfo (PB, PL, GatedEntrance, GateGuard, BNComments) 
 VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments')";
 
 // Execute the query
