@@ -13,23 +13,23 @@ $policeDistance = $_POST['policeDistance'];
 $policeNumber = $_POST['policeNumber'];
 $policeTime = $_POST['policeTime'];
 
-$sqlPolice = "INSERT INTO policeforce (PoliceForce, PoliceDistance, PoliceNumber, PoliceTime) 
-VALUES ('$policeForce', '$policeDistance', '$policeNumber', '$policeTime')";
-
 // Retrieve form data for fire
 $fireDepartment = $_POST['fireDepartment'];
 $fireDistance = $_POST['fireDistance'];
 $fireNumber = $_POST['fireNumber'];
 $fireTime = $_POST['fireTime'];
 
-$sqlFire = "INSERT INTO firedepartment (FireDepartment, FireDistance, FireNumber, FireTime) 
-VALUES ('$fireDepartment', '$fireDistance', '$fireNumber', '$fireTime')";
-
 //Retrieve form data for hospital
 $hospitalLocation = $_POST['hospitalLocation'];
 $distance = $_POST['distance'];
 $hospitalNumber = $_POST['hospitalNumber'];
 $hospitalResponseTime = $_POST['hospitalResponseTime'];
+
+$sqlPolice = "INSERT INTO policeforce (PoliceForce, PoliceDistance, PoliceNumber, PoliceTime) 
+VALUES ('$policeForce', '$policeDistance', '$policeNumber', '$policeTime')";
+
+$sqlFire = "INSERT INTO firedepartment (FireDepartment, FireDistance, FireNumber, FireTime) 
+VALUES ('$fireDepartment', '$fireDistance', '$fireNumber', '$fireTime')";
 
 $sqlHospital = "INSERT INTO hospital (HospitalLocation, Distance, HospitalNumber, HospitalResponseTime) 
 VALUES ('$hospitalLocation', '$distance', '$hospitalNumber', '$hospitalResponseTime')";
@@ -41,6 +41,7 @@ if ($conn->query($sqlPolice) === TRUE && $conn->query($sqlFire) === TRUE && $con
 } else {
     echo "Error: " . $conn->error;
 }
+
 
 // Close the database connection when done
 mysqli_close($conn);
