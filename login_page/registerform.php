@@ -41,6 +41,7 @@
 		<select class="form-control" name="Role" placeholder="ADMIN or ANALYST">
 					<option>ADMIN</option>
 					<option>ANALYST</option>
+		</select>
         </div>
 
         <button type="submit" id="register" class="btn">Create Account</button>
