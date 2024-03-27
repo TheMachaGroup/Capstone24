@@ -8,10 +8,13 @@ if (!$conn) {
 }
 
 // Retrieve form data for police
-$policeStation = $_POST['policeStation'];
+$policeForce = $_POST['policeForce'];
 $policeDistance = $_POST['policeDistance'];
 $policeNumber = $_POST['policeNumber'];
 $policeTime = $_POST['policeTime'];
+
+$policeSql = "INSERT INTO policeforce (PoliceForce, PoliceDistance, PoliceNumber, PoliceTime) 
+VALUES ('$policeForce', '$policeDistance', '$policeNumber', '$policeTime')";
 
 // Retrieve form data for fire
 $fireDepartment = $_POST['fireDepartment'];
@@ -19,22 +22,16 @@ $fireDistance = $_POST['fireDistance'];
 $fireNumber = $_POST['fireNumber'];
 $fireTime = $_POST['fireTime'];
 
+$fireSql = "INSERT INTO firedepartment (FireDepartment, FireDistance, FireNumber, FireTime) 
+VALUES ('$fireDepartment', '$fireDistance', '$fireNumber', '$fireTime')";
+
 //Retrieve form data for hospital
 $hospital = $_POST['hospital'];
 $distance = $_POST['distance'];
 $phoneNumber = $_POST['phoneNumber'];
 $hospitalResponseTime = $_POST['hospitalResponseTime'];
 
-   
-// SQL query to insert data into policeforce table
-$sql = "INSERT INTO policeforce (PoliceStation, PoliceDistance, PoliceNumber, PoliceTime) 
-VALUES ('$policeStation', '$policeDistance', '$phoneNumber', '$policeTime')";
-
-// SQL query to insert data into firedepartment table
-$sql = "INSERT INTO firedepartment (FireDepartment, FireDistance FireNumber, FireTime) 
-VALUES ('$fireDepartment', '$fireDistance', '$phoneNumber', '$fireTime')";
-
-$sql = "INSERT INTO hospital (Hospital, Distance, HospitalNumber, HospitalResponseTime) 
+$hospitalSql = "INSERT INTO hospital (Hospital, Distance, HospitalNumber, HospitalResponseTime) 
 VALUES ('$hospital', '$distance', '$phoneNumber', '$hospitalResponseTime')";
 
 if ($conn->query($sql) === TRUE) {
