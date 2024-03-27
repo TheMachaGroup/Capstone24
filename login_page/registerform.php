@@ -38,7 +38,9 @@
             <input class="input_box" name="UserPassword" required>
 
             <label class="box_label">Role</label>
-            <input class="input_box" name="Role" placeholder="ADMIN or ANALYST" required>
+		<select class="form-control" name="Role" placeholder="ADMIN or ANALYST">
+					<option>ADMIN</option>
+					<option>ANALYST</option>
         </div>
 
         <button type="submit" id="register" class="btn">Create Account</button>
