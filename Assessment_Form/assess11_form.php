@@ -6,17 +6,21 @@ $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide",
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-   // Retrieve form data
-    $subGuards = $_POST['subGuards'];
-    $military= $_POST['Military'];
-    $BNComments = $_POST['BNComments11'];
 
-    // SQL query to insert data into securitymanninginfo table
-    $sql = "INSERT INTO securitymanninginfo (SubGuards, Military, Comments) VALUES ('$subGuards', '$military', '$BNComments')";
-    if ($conn->query($sql) === TRUE) {
+
+// Retrieve form data
+$subGuards = $_POST['subGuards'];
+$military= $_POST['Military'];
+$BNComments = $_POST['BNComments11'];
+
+// SQL query to insert data into securitymanninginfo table
+$sql = "INSERT INTO securitymanninginfo (SubGuards, Military, Comments) VALUES ('$subGuards', '$military', '$BNComments')";
+
+if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
     }
+
     
     // Close the database connection 
 mysqli_close($conn);
