@@ -9,15 +9,15 @@ if (!$conn) {
 
 
 // Retrieve form data
-$perimeterBarriers = $_POST['PB'];
-$perimeterLighting = $_POST['PL'];
-$gatedEntrance = $_POST['GatedEntrance'];
+$perimeterBarrPresent = $_POST['PB'];
+$perimeterLight = $_POST['PL'];
+$perimeterBarrType = $_POST['GatedEntrance'];
 $gateGuard = $_POST['GateGuard'];
 $BNComments = $_POST['BNComments10'];
 
 // SQL query to insert data into perimetersecurityinfo table
-$sql = "INSERT INTO perimetersecurityinfo (PerimeterBarriers, PerimeterLighting, GatedEntrance, GateGuard, BNComments) 
-VALUES ('$perimeterBarriers', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments')";
+$sql = "INSERT INTO perimetersecurityinfo (PerimeterBarrPresent, PerimeterLight, PerimeterBarrType, GateGuard, BNComments) 
+VALUES ('$perimeterBarrPresent', '$perimeterLighting', '$gatedEntrance', '$gateGuard', '$BNComments')";
 
 // Execute the query
 if ($conn->query($sql) === TRUE) {
