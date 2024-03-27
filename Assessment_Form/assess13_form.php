@@ -28,7 +28,7 @@ VALUES ('$fireDepartment', '$fireDistance', '$fireNumber', '$fireTime')";
 //Retrieve form data for hospital
 $hospitalLocation = $_POST['hospitalLocation'];
 $distance = $_POST['distance'];
-$phoneNumber = $_POST['phoneNumber'];
+$hospitalNumber = $_POST['hospitalNumber'];
 $hospitalResponseTime = $_POST['hospitalResponseTime'];
 
 $hospitalSql = "INSERT INTO hospital (HospitalLocation, Distance, HospitalNumber, HospitalResponseTime) 
