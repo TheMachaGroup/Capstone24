@@ -26,13 +26,13 @@ $fireSql = "INSERT INTO firedepartment (FireDepartment, FireDistance, FireNumber
 VALUES ('$fireDepartment', '$fireDistance', '$fireNumber', '$fireTime')";
 
 //Retrieve form data for hospital
-$hospital = $_POST['hospital'];
+$hospitalLocation = $_POST['hospitalLocation'];
 $distance = $_POST['distance'];
 $phoneNumber = $_POST['phoneNumber'];
 $hospitalResponseTime = $_POST['hospitalResponseTime'];
 
-$hospitalSql = "INSERT INTO hospital (Hospital, Distance, HospitalNumber, HospitalResponseTime) 
-VALUES ('$hospital', '$distance', '$phoneNumber', '$hospitalResponseTime')";
+$hospitalSql = "INSERT INTO hospital (HospitalLocation, Distance, HospitalNumber, HospitalResponseTime) 
+VALUES ('$hospitalLocation', '$distance', '$hospitalNumber', '$hospitalResponseTime')";
 
 // Execute SQL queries
 if ($conn->query($policeSql) === TRUE && $conn->query($fireSql) === TRUE && $conn->query($hospitalSql) === TRUE) {
