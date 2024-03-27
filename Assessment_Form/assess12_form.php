@@ -11,9 +11,9 @@ if (!$conn) {
 $entranceKeyHolders = $_POST['entranceKeyHolders'];
 $roofEntry = $_POST['roofEntry'];
 $groundAccess = $_POST['groundAccess'];
-$publicParking = $_POST['publicParking'];
+$publicParking = $_POST['PublicParking'];
 $businessOfficesPresent = $_POST['BusinessOficesPresent'];
-$obstruction = $_POST['Obstruction'];
+$obstruction = $_POST['obstruction'];
 $mosquesNearby = $_POST['MosquesNearby'];
 $outsideGroundsPresent = $_POST['OutsideGroundsPresent'];
 $pointsOfEntryNumber = $_POST['PointsofEntryNumber'];
