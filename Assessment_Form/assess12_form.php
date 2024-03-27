@@ -6,29 +6,30 @@ $conn = mysqli_connect("usarcent-server.mysql.database.azure.com", "thpgbqeide",
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-    // Retrieve form data
-    $maintainKeys = $_POST['Maintain'];
-    $roofEntry = $_POST['roofEntry'];
-    $groundAccess = $_POST['groundAccess'];
-    $publicParking = $_POST['publicParking'];
-    $businessOfficesPresent = $_POST['BusinessOficesPresent'];
-    $obstruction = $_POST['Obstruction'];
-    $mosquesNearby = $_POST['MosquesNearby'];
-    $outsideGroundsDesc = $_POST['groundOpenings'];
-    $pointsOfEntryNumber = $_POST['PointsofEntryNumber'];
-    $BNComments = $_POST['BNComments12'];
 
-    // SQL query to insert data into residentialhousinggeninfo table
-    $sql = "INSERT INTO residentialhousinggeninfo (Maintain, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, OutsideGroundsDesc, PointsofEntryNumber, Comments)
-    VALUES ('$maintainKeys', '$roofEntry', '$groundAccess', '$publicParking', '$businessOffices', '$obstruction', '$mosquesNearby', '$outsideGroundsDesc', '$pointsOfEntryNumber', '$BNComments')";
-   if ($conn->query($sql) === TRUE) {
+// Retrieve form data
+$entranceKeyHolders = $_POST['EntranceKeyHolders'];
+$roofEntry = $_POST['roofEntry'];
+$groundAccess = $_POST['groundAccess'];
+$publicParking = $_POST['publicParking'];
+$businessOfficesPresent = $_POST['BusinessOficesPresent'];
+$obstruction = $_POST['Obstruction'];
+$mosquesNearby = $_POST['MosquesNearby'];
+$outsideGroundsPresent = $_POST['OutsideGroundsPresent'];
+$pointsOfEntryNumber = $_POST['PointsofEntryNumber'];
+$BNComments = $_POST['BNComments12'];
+
+// SQL query to insert data into residentialhousinggeninfo table
+$sql = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, OutsideGroundsPresent, PublicParking, BusinessOfficesPresent, Obstruction, MosquesNearby, PointsofEntryNumber, Comments)
+VALUES ('$entranceKeyHolders', '$roofEntry', '$groundAccess', '$outsideGroundsPresent', '$publicParking', '$businessOfficesPresent', '$obstruction', '$mosquesNearby', '$pointsOfEntryNumber', '$BNComments')";
+
+if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
-    }
+}
 
 // Close the connection 
 mysqli_close($conn);
 
 ?>       
     
-
