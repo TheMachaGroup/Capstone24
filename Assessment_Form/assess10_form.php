@@ -8,6 +8,7 @@ if (!$conn) {
 }
 
 
+// Retrieve form data
 $perimeterBarriers = $_POST['PB'];
 $perimeterLighting = $_POST['PL'];
 $gatedEntrance = $_POST['GatedEntrance'];
