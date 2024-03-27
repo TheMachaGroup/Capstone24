@@ -21,9 +21,9 @@ $fireTime = $_POST['fireTime'];
 
 //Retrieve form data for hospital
 $hospital = $_POST['hospital'];
-$Distance = $_POST['distance'];
+$distance = $_POST['distance'];
 $phoneNumber = $_POST['phoneNumber'];
-$hospitalResponseTime = $_POST['hospitalTime'];
+$hospitalResponseTime = $_POST['hospitalResponseTime'];
 
    
 // SQL query to insert data into policeforce table
@@ -35,7 +35,7 @@ $sql = "INSERT INTO firedepartment (FireDepartment, FireDistance FireNumber, Fir
 VALUES ('$fireDepartment', '$fireDistance', '$phoneNumber', '$fireTime')";
 
 $sql = "INSERT INTO hospital (Hospital, Distance, HospitalNumber, HospitalResponseTime) 
-VALUES ('$hospital', '$Distance', '$phoneNumber', '$hospitalResponseTime')";
+VALUES ('$hospital', '$distance', '$phoneNumber', '$hospitalResponseTime')";
 
 if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
