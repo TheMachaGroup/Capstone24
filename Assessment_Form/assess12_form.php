@@ -23,14 +23,11 @@ $BNComments = $_POST['BNComments12'];
 // SQL query to insert data into residentialhousinggeninfo table
 $sql = "INSERT INTO residentialhousinggeninfo (EntranceKeyHolders, RoofEntry, GroundAccess, PublicParking, BusinessOfficesPresent, obstruction, MosquesNearby, OutsideGroundsPresent, PointsofEntryNumber, Comments)
 VALUES ('$entranceKeyHolders', '$roofEntry', '$groundAccess', '$publicParking', '$businessOfficesPresent', '$obstruction', '$mosquesNearby', '$outsideGroundsPresent','$pointsOfEntryNumber', '$BNComments')";
-
 if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
 }
 
-
 // Close the connection 
 mysqli_close($conn);
-
 ?>
