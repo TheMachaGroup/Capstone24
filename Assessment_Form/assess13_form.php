@@ -31,7 +31,7 @@ VALUES ('$policeForce', '$policeDistance', '$policeNumber', '$policeTime')";
 $sqlFire = "INSERT INTO firedepartment (FireDepartment, FireDistance, FireNumber, FireTime) 
 VALUES ('$fireDepartment', '$fireDistance', '$fireNumber', '$fireTime')";
 
-$sqlHospital = "INSERT INTO hospital (HospitalLocation, Distance, HospitalNumber, HospitalResponseTime) 
+$sqlHospital = "INSERT INTO hospital (Hospital, HospitalDistance, HospitalNumber, HospitalResponseTime) 
 VALUES ('$hospitalLocation', '$distance', '$hospitalNumber', '$hospitalResponseTime')";
 
 // Execute SQL queries
