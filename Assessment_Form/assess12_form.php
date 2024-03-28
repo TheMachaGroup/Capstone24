@@ -33,5 +33,4 @@ if ($conn->query($sql) === TRUE) {
 // Close the connection 
 mysqli_close($conn);
 
-?>       
-    
+?>
