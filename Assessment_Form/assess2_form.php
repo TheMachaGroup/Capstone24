@@ -16,8 +16,14 @@ $country = $_POST['country'];
 $comments = $_POST['BNComments2'];
 $gpsLocation = $_POST['gps'];
 $buildingName = $_POST['fname'];
+$reportName = $_POST['HousingAssessment'];
+$phoneNumber = $_POST['phoneNumber'];
+$unitType = $_POST['unitType'];
+$spaceType = $_POST['spaceType'];
 
-// Insert data into respective tables
+// Insert data into locationdetails table
+$sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofResidence, TypeofUnit) VALUES ('$reportName', '$phoneNumber', '$unitType', '$spaceType')";
+
 // Geographic Location Table
 $sql_geo = "INSERT INTO geographiclocation (GeographicLocation, Street, BuildingName, City, StateProvince, Zip, Country, Comments) 
 VALUES ('$gpsLocation', '$address', '$buildingName', '$city', '$state', '$zip', '$country', '$comments')";
