@@ -8,14 +8,7 @@ if (!$conn) {
 }
 
 // Retrieve form data
-$reportName = $_POST['HousingAssessment'];
 $reportdate = $_POST['reportdate'];
-$phoneNumber = $_POST['phoneNumber'];
-$unitType = $_POST['unitType'];
-$spaceType = $_POST['spaceType'];
-
-// Insert data into locationdetails table
-$sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofResidence, TypeofUnit) VALUES ('$reportName', '$phoneNumber', '$unitType', '$spaceType')";
 
 
 // Insert data into Form table with reference to GeographicLocation and locationdetails tables
