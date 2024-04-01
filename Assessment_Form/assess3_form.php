@@ -11,12 +11,11 @@ if (!$conn) {
     $numFloors = $_POST['floors'];
     $totalRooms = $_POST['totalRooms'];
     $totalPeople = $_POST['totalPeople'];
-    $occupancyComments = $_POST['occupancyComments'];
     $BNComments = $_POST['BNComments3'];
 
     // Prepare and execute SQL statement to insert data into the database
-    $sql = "INSERT INTO occupancyinformation (TotalBuildings, NumFloors, TotalAptInComp, TotalOccByPersonnel, Comments, BNComments)
-            VALUES ('$numBuildings', '$numFloors', '$totalRooms', '$totalPeople', '$occupancyComments', '$BNComments')";
+    $sql = "INSERT INTO occupancyinformation (TotalBuildings, NumFloors, TotalAptInComp, TotalOccByPersonnel, BNComments)
+            VALUES ('$numBuildings', '$numFloors', '$totalRooms', '$totalPeople', '$BNComments')";
     if ($conn->query($sql) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
