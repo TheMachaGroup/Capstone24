@@ -9,10 +9,16 @@ if (!$conn) {
 
 // Retrieve form data
 $reportdate = $_POST['reportdate'];
+$reportname = $_POST['reportname'];
+$securitymonitor = $_POST['securitymonitor'];
+$sassupervisor = $_POST['sassupervisor'];
+$signatures = $_POST['signatures'];
 
+//insert into annual assessment table
+$sql = "INSERT INTO annualassessment (SecurityMonitor, SASSupervisor, Signatures) VALUES ('$securitymonitor', '$sassupervisor', '$signatures' )";
 
-// Insert data into Form table with reference to GeographicLocation and locationdetails tables
-$sqlForm = "INSERT INTO form (DateofReport) VALUES ('$reportdate')";
+// Insert data into Form table
+$sqlForm = "INSERT INTO form (DateofReport, ReportName) VALUES ('$reportdate', '$reportname')";
 if ($conn->query($sqlForm) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
