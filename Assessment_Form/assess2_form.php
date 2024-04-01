@@ -14,7 +14,6 @@ $state = $_POST['state'];
 $zip = $_POST['zip'];
 $country = $_POST['country'];
 $comments = $_POST['BNComments2'];
-$gpsLocation = $_POST['gps'];
 $buildingName = $_POST['fname'];
 $reportName = $_POST['HousingAssessment'];
 $phoneNumber = $_POST['phoneNumber'];
@@ -25,8 +24,8 @@ $spaceType = $_POST['spaceType'];
 $sqlLocation = "INSERT INTO locationdetails (LocationName, PhoneNumber, TypeofResidence, TypeofUnit) VALUES ('$reportName', '$phoneNumber', '$unitType', '$spaceType')";
 
 // Geographic Location Table
-$sql_geo = "INSERT INTO geographiclocation (GeographicLocation, Street, BuildingName, City, StateProvince, Zip, Country, Comments) 
-VALUES ('$gpsLocation', '$address', '$buildingName', '$city', '$state', '$zip', '$country', '$comments')";
+$sql_geo = "INSERT INTO geographiclocation (Street, BuildingName, City, StateProvince, Zip, Country, Comments) 
+VALUES ('$address', '$buildingName', '$city', '$state', '$zip', '$country', '$comments')";
 if ($conn->query($sql_geo) === TRUE) {
     header("Location: https://usarcent.azurewebsites.net/Form.html");
     exit();
